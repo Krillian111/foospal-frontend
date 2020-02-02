@@ -1,13 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { parseCsvToPlayers } from './parser/csv-parser'
 
 function App() {
 
   function saveItemToStore() {
     const csvFile = document.getElementById('csvinput').files[0];
     csvFile.text()
-    .then(text => console.log(text));
+    .then(text => parseCsvToPlayers(text));
   }
 
   return (
