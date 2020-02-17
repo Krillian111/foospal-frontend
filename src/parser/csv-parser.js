@@ -2,7 +2,7 @@ export function parseCsvToPlayers(csvAsText) {
 
     const games = csvAsText
         .split('\n')
-        .filter(line => !line.includes('SpielerA'))
+        .filter(line => !line.includes('Team'))
         .map(line => line.split(','))
         .map(line => { return {
             playerA: line[0],
@@ -10,5 +10,5 @@ export function parseCsvToPlayers(csvAsText) {
             scoreA: line[2],
             scoreB: line[3],
         }});
-    console.log(games);
+    return games;
 }

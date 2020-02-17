@@ -1,32 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { parseCsvToPlayers } from './parser/csv-parser'
+import GameList from './containers/GameList';
+import CsvUpload from './containers/CsvUpload';
 
 function App() {
 
-  function saveItemToStore() {
-    const csvFile = document.getElementById('csvinput').files[0];
-    csvFile.text()
-    .then(text => parseCsvToPlayers(text));
-  }
-
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <input type="file" id="csvinput" onChange={saveItemToStore} />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <CsvUpload />
+        <GameList />
       </header>
     </div>
   );
