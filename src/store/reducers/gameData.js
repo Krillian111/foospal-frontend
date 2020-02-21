@@ -23,9 +23,15 @@ const initialState = {
         playerB: 'Berta',
         scoreA: '3',
         scoreB: '7',
+      },
+      {
+        playerA: 'Berta',
+        playerB: 'Andy',
+        scoreA: '4',
+        scoreB: '7',
       }
     ]
-}
+};
 
 const gameData = (state = initialState, action) => {
   switch (action.type) {
