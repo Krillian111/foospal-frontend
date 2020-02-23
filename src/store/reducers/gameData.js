@@ -1,10 +1,9 @@
 import { ACTION_PARSE_CSV } from '../actions/parseCsv';
 
 function parseCsvToPlayers(csvAsText) {
-
   const games = csvAsText
       .split('\n')
-      .filter(line => !line.includes('Team'))
+      .filter((line, index) => index !== 0)
       .map(line => line.split(','))
       .map(line => { return {
           playerA: line[0],
@@ -13,6 +12,16 @@ function parseCsvToPlayers(csvAsText) {
           scoreB: line[3],
       }});
   return games;
+}
+
+function mapGamesToPlayerStats(games) {
+  const playerStats = {};
+
+  games.forEach(game => {
+    playerStats[game.playerA] = {};
+    playerStats[game.playerB] = {};
+  })
+  return playerStats;
 }
 
 const initialState = {
@@ -37,10 +46,12 @@ const gameData = (state = initialState, action) => {
   switch (action.type) {
     case ACTION_PARSE_CSV: {
       const games = parseCsvToPlayers(action.csvAsText);
+      const playerStats = mapGamesToPlayerStats(games);
       return {
         ...state,
         games,
-      }
+        playerStats,
+      };
     }
     default:
       return state;
