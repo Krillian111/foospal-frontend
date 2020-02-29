@@ -25,31 +25,39 @@ const TableRow = styled.div`
 `;
 
 const TableCell = styled.div`
-  width: 80px;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
   padding: 2px;
 `;
 
+const NumberTableCell = styled(TableCell)`
+  width: 10%;
+`;
+
+const NameTableCell = styled(TableCell)`
+  width: 40%;
+`;
+
+
 const GameList = ({ title, games }) => (
   <div>
     <Header>{title}</Header>
     <Table>
       <TableHeaderRow rowIndex={0}>
-        <TableCell>Game</TableCell>
-        <TableCell>PlayerA</TableCell>
-        <TableCell>PlayerB</TableCell>
-        <TableCell>ScoreA</TableCell>
-        <TableCell>ScoreB</TableCell>
+        <NumberTableCell>Game</NumberTableCell>
+        <NameTableCell>PlayerA</NameTableCell>
+        <NameTableCell>PlayerB</NameTableCell>
+        <NumberTableCell>ScoreA</NumberTableCell>
+        <NumberTableCell>ScoreB</NumberTableCell>
       </TableHeaderRow>
       {games.map((game, index) => (
         <TableRow rowIndex={index+1}>
-          <TableCell>{game.index}</TableCell>
-          <TableCell>{game.playerA}</TableCell>
-          <TableCell>{game.playerB}</TableCell>
-          <TableCell>{game.scoreA}</TableCell>
-          <TableCell>{game.scoreB}</TableCell>
+          <NumberTableCell>{game.index}</NumberTableCell>
+          <NameTableCell>{game.playerA}</NameTableCell>
+          <NameTableCell>{game.playerB}</NameTableCell>
+          <NumberTableCell>{game.scoreA}</NumberTableCell>
+          <NumberTableCell>{game.scoreB}</NumberTableCell>
         </TableRow>
       ))}
     </Table>
