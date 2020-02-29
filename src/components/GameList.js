@@ -37,6 +37,7 @@ const GameList = ({ title, games }) => (
     <Header>{title}</Header>
     <Table>
       <TableHeaderRow rowIndex={0}>
+        <TableCell>Game</TableCell>
         <TableCell>PlayerA</TableCell>
         <TableCell>PlayerB</TableCell>
         <TableCell>ScoreA</TableCell>
@@ -44,6 +45,7 @@ const GameList = ({ title, games }) => (
       </TableHeaderRow>
       {games.map((game, index) => (
         <TableRow rowIndex={index+1}>
+          <TableCell>{game.index}</TableCell>
           <TableCell>{game.playerA}</TableCell>
           <TableCell>{game.playerB}</TableCell>
           <TableCell>{game.scoreA}</TableCell>
