@@ -11,9 +11,15 @@ const GameList = ({ title, games }) => {
     SimpleTable.supportedDataTypes.numberShort,
     SimpleTable.supportedDataTypes.numberShort,
   ]
-  const tableHeaders = ['Game', 'PlayerA', 'PlayerB', 'ScoreA', 'ScoreB'];
+  const tableHeaders = [
+    {text:'Game'}, 
+    {text:'PlayerA'}, 
+    {text:'PlayerB'}, 
+    {text:'ScoreA'}, 
+    {text:'ScoreB'}
+  ];
   const dataRows = games.map((game) => {
-      return [game.index, game.playerA, game.playerB, game.scoreA, game.scoreB];
+      return [game.id, game.playerA, game.playerB, game.scoreA, game.scoreB];
     });
 
   return(

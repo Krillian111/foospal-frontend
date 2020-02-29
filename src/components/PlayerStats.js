@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SimpleTable from './common/SimpleTable';
 
 
-const PlayerStats = ({ title, playerStats }) => {
+const PlayerStats = ({ title, playerStats, sortByPlayer }) => {
   const columnConfigs = [
     SimpleTable.supportedDataTypes.numberShort,
     SimpleTable.supportedDataTypes.stringLong,
@@ -12,11 +12,16 @@ const PlayerStats = ({ title, playerStats }) => {
     SimpleTable.supportedDataTypes.numberShort,
     SimpleTable.supportedDataTypes.numberShort,
   ]
-  const tableHeaders = ['Id', 'Player', 'Wins', 'Losses', 'Goals shot', 'Goals recv'];
-  const dataRows = Object.entries(playerStats).map((entry) => {
-      const player = entry[0];
-      const stats = entry[1];
-      return [stats.index, player, stats.wins, stats.losses, stats.goalsShot, stats.goalsReceived];
+  const tableHeaders = [
+    {text:'Id'}, 
+    {text:'Player', onClick: sortByPlayer}, 
+    {text:'Wins'}, 
+    {text:'Losses'}, 
+    {text:'Goals shot'}, 
+    {text:'Goals recv'}
+  ];
+  const dataRows = playerStats.map((stats) => {
+      return [stats.id, stats.name, stats.wins, stats.losses, stats.goalsShot, stats.goalsReceived];
     });
 
   return(
@@ -31,7 +36,8 @@ const PlayerStats = ({ title, playerStats }) => {
   
 PlayerStats.propTypes = {
     title: PropTypes.string.isRequired,
-    playerStats: PropTypes.shape().isRequired,
+    playerStats: PropTypes.array.isRequired,
+    sortByPlayer: PropTypes.func.isRequired,
 }
 
 export default PlayerStats;

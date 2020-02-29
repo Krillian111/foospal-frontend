@@ -52,13 +52,13 @@ const SimpleTable = ({ title, columnConfigs, tableHeaders, dataRows }) => {
     }
   }
 
-  const mapContentToRow = (content, index) => {
+  const mapContentToRow = (content, index, onClick = () => {}) => {
     const columnType = columnConfigs[index];
     switch(columnType) {
       case supportedDataTypes.numberShort:
-        return <NumberTableCell>{content}</NumberTableCell>;
+        return <NumberTableCell onClick={onClick}>{content}</NumberTableCell>;
       case supportedDataTypes.stringLong:
-        return <NameTableCell>{content}</NameTableCell>;
+        return <NameTableCell onClick={onClick}>{content}</NameTableCell>;
       default:
         throw new Error('unsupported type: ' + columnType);
     }
@@ -69,12 +69,12 @@ const SimpleTable = ({ title, columnConfigs, tableHeaders, dataRows }) => {
       <Header>{title}</Header>
       <Table>
         <TableHeaderRow rowIndex={0}>
-          {tableHeaders.map(mapContentToRow)}
+          {tableHeaders.map(({text, onClick}, index) => mapContentToRow(text, index, onClick))}
         </TableHeaderRow>
         {dataRows.map((dataRow, index) => {
           return (
             <TableRow rowIndex={index+1}>
-              {dataRow.map(mapContentToRow)}
+              {dataRow.map((value, index) => mapContentToRow(value, index))}
             </TableRow>
           );
         })}
@@ -92,10 +92,11 @@ SimpleTable.supportedDataTypes = supportedDataTypes;
 
 SimpleTable.propTypes = {
     title: PropTypes.string.isRequired,
-    columnConfigs: PropTypes.arrayOf(PropTypes.shape({
-      type: PropTypes.oneOf(Object.values(SimpleTable.supportedDataTypes)),
-    })),
-    tableHeaders: PropTypes.arrayOf(PropTypes.string),
+    columnConfigs: PropTypes.arrayOf(PropTypes.oneOf(Object.values(supportedDataTypes))),
+    tableHeaders: PropTypes.arrayOf(PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      onClick: PropTypes.func,
+    })).isRequired,
     dataRows: PropTypes.arrayOf(PropTypes.array).isRequired,
 }
 

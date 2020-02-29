@@ -1,4 +1,5 @@
 import { ACTION_PARSE_CSV } from '../actions/parseCsv';
+import { ACTION_SORT_STATS_BY_PLAYER } from '../actions/sortStatsByPlayer';
 
 function parseCsvToPlayers(csvAsText) {
   const games = csvAsText
@@ -7,7 +8,7 @@ function parseCsvToPlayers(csvAsText) {
       .filter((line) => line.split(',').length === 4)
       .map(line => line.split(','))
       .map((line, index) => { return {
-          index,
+          id: index,
           playerA: line[0],
           playerB: line[1],
           scoreA: parseInt(line[2]),
@@ -17,8 +18,8 @@ function parseCsvToPlayers(csvAsText) {
 }
 
 function mapGamesToPlayerStats(games) {
-  const playerStats = {};
-  let playerIndex = 0;
+  const playerStats = [];
+  let playerId = 0;
 
   games.forEach(game => {
     [{
@@ -34,16 +35,17 @@ function mapGamesToPlayerStats(games) {
       opponentScore: game.scoreA,
     }]
     .forEach(({name, win, playerScore, opponentScore})=> {
-      if(!playerStats[name]) {
-        playerStats[name] = {
-          index: playerIndex++,
+      if(!playerStats.find(stats => stats.name===name)){
+        playerStats.push({
+          id: playerId++,
+          name,
           wins: 0,
           losses: 0,
           goalsShot: 0,
           goalsReceived: 0,
-        };
+        });
       }
-      const currentPlayerStats = playerStats[name];
+      const currentPlayerStats = playerStats.find(stats => stats.name===name);
       currentPlayerStats.goalsShot += playerScore;
       currentPlayerStats.goalsReceived += opponentScore;
       if(win) {
@@ -59,7 +61,7 @@ function mapGamesToPlayerStats(games) {
 
 const initialState = {
     games: [],
-    playerStats: {},
+    playerStats: [],
 };
 
 const gameData = (state = initialState, action) => {
@@ -72,6 +74,21 @@ const gameData = (state = initialState, action) => {
         games,
         playerStats,
       };
+    }
+    case ACTION_SORT_STATS_BY_PLAYER: {
+      state.playerStats.sort((stats1, stats2) => {
+        let comparison = 0;
+        if (stats1.name > stats2.name) {
+          comparison = 1;
+        } else if (stats1.name < stats2.name) {
+          comparison = -1;
+        }
+        return comparison;
+      });
+      return {
+        ...state,
+      }
+
     }
     default:
       return state;
