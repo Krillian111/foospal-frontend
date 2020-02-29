@@ -58,7 +58,6 @@ function mapGamesToPlayerStats(games) {
 }
 
 const initialState = {
-    title: 'Games',
     games: [],
     playerStats: {},
 };
