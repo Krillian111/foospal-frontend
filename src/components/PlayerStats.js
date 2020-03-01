@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SimpleTable from './common/SimpleTable';
+import { mapToWinRate, mapToGoalDifference, mapToPointsAvg, mapToPointsCloseAvg, mapToCloseGameRate } from '../store/data/playerStats';
+import { cutOffAfterTwoDecimal, convertToPercentage } from './utils/formatter';
 
 
 const PlayerStats = ({ title, playerStats,
@@ -27,11 +29,11 @@ const PlayerStats = ({ title, playerStats,
       return [
         stats.id,
         stats.name,
-        Math.trunc(((stats.wins/(stats.wins+stats.losses))*100))+'%',
-        stats.goalsShot-stats.goalsReceived,
-        (Math.trunc(((stats.points/(stats.wins+stats.losses))*100)))/100,
-        (Math.trunc(((stats.pointsWithCloseScores/(stats.wins+stats.losses))*100)))/100,
-        Math.trunc(((stats.closeGames/(stats.wins+stats.losses))*100))+'%',
+        convertToPercentage(mapToWinRate(stats)),
+        mapToGoalDifference(stats),
+        cutOffAfterTwoDecimal(mapToPointsAvg(stats)),
+        cutOffAfterTwoDecimal(mapToPointsCloseAvg(stats)),
+        convertToPercentage(mapToCloseGameRate(stats)),
       ];
     });
 

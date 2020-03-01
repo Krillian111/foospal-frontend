@@ -1,4 +1,5 @@
 import { simpleCompareDescending } from "../util/sortUtil";
+import { mapToWinRate } from "../data/playerStats";
 
 export const ACTION_SORT_STATS_BY_WIN_RATE = 'ACTION_SORT_STATS_BY_WIN_RATE';
 
@@ -8,7 +9,7 @@ export const sortStatsByWinRate = () => ({
 })
 
 const compareUsingWinRate = (stats1, stats2) => {
-  const winRate1 = stats1.wins/(stats1.wins+stats1.losses);
-  const winRate2 = stats2.wins/(stats2.wins+stats2.losses);
+  const winRate1 = mapToWinRate(stats1);
+  const winRate2 = mapToWinRate(stats2);
   return simpleCompareDescending(winRate1, winRate2);
 }
