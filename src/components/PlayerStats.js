@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import SimpleTable from './common/SimpleTable';
 
 
-const PlayerStats = ({ title, playerStats, sortByPlayer, sortByWinRate, sortByGoalDifference}) => {
+const PlayerStats = ({ title, playerStats,
+  sortByPlayer, sortByWinRate, sortByGoalDifference, sortByPoints, sortByPointsClose, sortByCloseRate}) => {
   const columnConfigs = [
     SimpleTable.supportedDataTypes.numberShort,
     SimpleTable.supportedDataTypes.stringLong,
@@ -18,9 +19,9 @@ const PlayerStats = ({ title, playerStats, sortByPlayer, sortByWinRate, sortByGo
     {text:'Player', onClick: sortByPlayer}, 
     {text:'Win rate', onClick: sortByWinRate}, 
     {text:'Goal difference', onClick: sortByGoalDifference}, 
-    {text: 'Points'},
-    {text: 'Pts (close)'},
-    {text: 'Close games'}
+    {text: 'Points', onClick: sortByPoints},
+    {text: 'Pts (close)', onClick: sortByPointsClose},
+    {text: 'Close games', onClick: sortByCloseRate},
   ];
   const dataRows = playerStats.map((stats) => {
       return [

@@ -2,7 +2,14 @@ import { ACTION_PARSE_CSV } from '../actions/parseCsv';
 import { ACTION_SORT_STATS_BY_PLAYER } from '../actions/sortStatsByPlayer';
 import { ACTION_SORT_STATS_BY_GOAL_DIFFERENCE } from '../actions/sortStatsByGoalDifference';
 import { ACTION_SORT_STATS_BY_WIN_RATE } from '../actions/sortStatsByWinRate';
-import { compareUsing, compareUsingWinRate, compareUsingGoalDifference } from './sortUtil';
+import { compareUsingWinRate,
+  compareUsingGoalDifference, 
+  compareUsingCloseRate, 
+  compareAscendingUsing, 
+  compareDescendingUsing } from './sortUtil';
+import { ACTION_SORT_STATS_BY_CLOSE_RATE } from '../actions/sortStatsByCloseRate';
+import { ACTION_SORT_STATS_BY_POINTS } from '../actions/sortStatsByPoints';
+import { ACTION_SORT_STATS_BY_POINTS_CLOSE } from '../actions/sortStatsByPointsClose';
 
 function parseCsvToPlayers(csvAsText) {
   const games = csvAsText
@@ -90,7 +97,7 @@ const gameData = (state = initialState, action) => {
       };
     }
     case ACTION_SORT_STATS_BY_PLAYER: {
-      const sortedStats = state.playerStats.sort(compareUsing('name'))
+      const sortedStats = state.playerStats.sort(compareAscendingUsing('name'))
         .filter(() => true); // force redux to notice state change by creating new array
       return {
         ...state,
@@ -107,6 +114,30 @@ const gameData = (state = initialState, action) => {
     }
     case ACTION_SORT_STATS_BY_GOAL_DIFFERENCE: {
       const sortedStats = state.playerStats.sort(compareUsingGoalDifference)
+        .filter(() => true); // force redux to notice state change by creating new array
+      return {
+        ...state,
+        playerStats: sortedStats,
+      };
+    }
+    case ACTION_SORT_STATS_BY_CLOSE_RATE: {
+      const sortedStats = state.playerStats.sort(compareUsingCloseRate)
+        .filter(() => true); // force redux to notice state change by creating new array
+      return {
+        ...state,
+        playerStats: sortedStats,
+      };
+    }
+    case ACTION_SORT_STATS_BY_POINTS: {
+      const sortedStats = state.playerStats.sort(compareDescendingUsing('points'))
+        .filter(() => true); // force redux to notice state change by creating new array
+      return {
+        ...state,
+        playerStats: sortedStats,
+      };
+    }
+    case ACTION_SORT_STATS_BY_POINTS_CLOSE: {
+      const sortedStats = state.playerStats.sort(compareDescendingUsing('pointsWitCloseScores'))
         .filter(() => true); // force redux to notice state change by creating new array
       return {
         ...state,
