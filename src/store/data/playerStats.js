@@ -15,8 +15,12 @@ export class PlayerStats {
 
 // seperate functions cause redux recommends using data only in store
 
+export const mapToTotalGames = (stats) => {
+  return stats.wins + stats.losses;
+}
+
 export const mapToCloseGameRate = (stats) => {
-  return stats.closeGames/(stats.wins+stats.losses);
+  return stats.closeGames/mapToTotalGames(stats);
 }
 
 export const mapToGoalDifference = (stats) => {
@@ -24,15 +28,15 @@ export const mapToGoalDifference = (stats) => {
 }
 
 export const mapToPointsAvg = (stats) => {
-  return stats.points/(stats.wins+stats.losses);
+  return stats.points/mapToTotalGames(stats);
 }
 
 export const mapToPointsCloseAvg = (stats) => {
-  return stats.pointsWithCloseScores/(stats.wins+stats.losses);
+  return stats.pointsWithCloseScores/mapToTotalGames(stats);
 }
 
 export const mapToWinRate = (stats) => {
-  return stats.wins/(stats.wins+stats.losses);
+  return stats.wins/mapToTotalGames(stats);
 }
 
 export const updatePlayerFromSingleGame = (currentPlayerStats, singleGame) => {

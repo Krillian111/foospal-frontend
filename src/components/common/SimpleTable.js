@@ -33,11 +33,11 @@ const TableCell = styled.div`
 `;
 
 const NumberTableCell = styled(TableCell)`
-  width: 10%;
+  width: 8%;
 `;
 
 const NameTableCell = styled(TableCell)`
-  width: 40%;
+  width: 30%;
 `;
 
 

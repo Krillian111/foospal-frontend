@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SimpleTable from './common/SimpleTable';
-import { mapToWinRate, mapToGoalDifference, mapToPointsAvg, mapToPointsCloseAvg, mapToCloseGameRate } from '../store/data/playerStats';
+import { mapToWinRate, mapToGoalDifference, mapToPointsAvg, mapToPointsCloseAvg, mapToCloseGameRate, mapToTotalGames } from '../store/data/playerStats';
 import { cutOffAfterTwoDecimal, convertToPercentage } from './utils/formatter';
 
 
 const PlayerStats = ({ title, playerStats,
-  sortByPlayer, sortByWinRate, sortByGoalDifference, sortByPoints, sortByPointsClose, sortByCloseRate}) => {
+  sortByPlayer, sortByWinRate, sortByTotalGames, sortByGoalDifference, sortByPoints, sortByPointsClose, sortByCloseRate}) => {
   const columnConfigs = [
     SimpleTable.supportedDataTypes.numberShort,
     SimpleTable.supportedDataTypes.stringLong,
@@ -15,20 +15,23 @@ const PlayerStats = ({ title, playerStats,
     SimpleTable.supportedDataTypes.numberShort,
     SimpleTable.supportedDataTypes.numberShort,
     SimpleTable.supportedDataTypes.numberShort,
+    SimpleTable.supportedDataTypes.numberShort,
   ]
   const tableHeaders = [
-    {text:'Id'}, 
-    {text:'Player', onClick: sortByPlayer}, 
-    {text:'Win rate', onClick: sortByWinRate}, 
-    {text:'Goal difference', onClick: sortByGoalDifference}, 
+    {text: 'Id'}, 
+    {text: 'Player', onClick: sortByPlayer},
+    {text: 'Games', onClick: sortByTotalGames},
+    {text: 'Win rate', onClick: sortByWinRate}, 
+    {text: 'Goal diff', onClick: sortByGoalDifference}, 
     {text: 'Pts (avg)', onClick: sortByPoints},
     {text: 'Pts (avg, close)', onClick: sortByPointsClose},
-    {text: 'Close games', onClick: sortByCloseRate},
+    {text: 'Games (close)', onClick: sortByCloseRate},
   ];
   const dataRows = playerStats.map((stats) => {
       return [
         stats.id,
         stats.name,
+        mapToTotalGames(stats),
         convertToPercentage(mapToWinRate(stats)),
         mapToGoalDifference(stats),
         cutOffAfterTwoDecimal(mapToPointsAvg(stats)),

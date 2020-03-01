@@ -7,6 +7,7 @@ import { ACTION_SORT_STATS_BY_POINTS } from '../actions/sortStatsByPoints';
 import { ACTION_SORT_STATS_BY_POINTS_CLOSE } from '../actions/sortStatsByPointsClose';
 import { PlayerStats, updatePlayerFromSingleGame } from '../data/playerStats';
 import { SingleGame, fromPerspectiveOfA, fromPerspectiveOfB } from '../data/singleGame';
+import { ACTION_SORT_STATS_BY_TOTAL_GAMES } from '../actions/sortStatsByTotalGames';
 
 const initialState = {
     games: [],
@@ -30,6 +31,7 @@ const gameData = (state = initialState, action) => {
     case ACTION_SORT_STATS_BY_CLOSE_RATE:
     case ACTION_SORT_STATS_BY_POINTS:
     case ACTION_SORT_STATS_BY_POINTS_CLOSE:
+    case ACTION_SORT_STATS_BY_TOTAL_GAMES:
     {
       const sortedStats = state.playerStats.sort(action.compareFunction)
         .filter(() => true); // force redux to notice state change by creating new array

@@ -6,6 +6,7 @@ import { sortStatsByGoalDifference } from '../store/actions/sortStatsByGoalDiffe
 import { sortStatsByPoints } from '../store/actions/sortStatsByPoints';
 import { sortStatsByPointsClose } from '../store/actions/sortStatsByPointsClose';
 import { sortStatsByCloseRate } from '../store/actions/sortStatsByCloseRate';
+import { sortStatsByTotalGames } from '../store/actions/sortStatsByTotalGames';
 
 const mapStateToProps = (state, ownProps) => ({
   playerStats: state.gameData.playerStats,
@@ -15,6 +16,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch) => ({
   sortByPlayer: () => dispatch(sortStatsByPlayer()),
   sortByWinRate:  () => dispatch(sortStatsByWinRate()),
+  sortByTotalGames: () => dispatch(sortStatsByTotalGames()),
   sortByGoalDifference: () => dispatch(sortStatsByGoalDifference()),
   sortByPoints: () => dispatch(sortStatsByPoints()),
   sortByPointsClose: () => dispatch(sortStatsByPointsClose()),
