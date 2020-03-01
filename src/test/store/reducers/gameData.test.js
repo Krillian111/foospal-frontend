@@ -18,7 +18,10 @@ describe('gameData', () => {
           wins: 2,
           losses: 0,
           goalsShot: 10,
-          goalsReceived: 6
+          goalsReceived: 6,
+          points: 6,
+          pointsWithCloseScores: 5,
+          closeGames: 1,
         },
         {
           id: 1,
@@ -26,7 +29,10 @@ describe('gameData', () => {
           wins: 0,
           losses: 1,
           goalsShot: 4,
-          goalsReceived: 5
+          goalsReceived: 5,
+          points: 0,
+          pointsWithCloseScores: 1,
+          closeGames: 1,
         },
         {
           id: 2,
@@ -34,7 +40,10 @@ describe('gameData', () => {
           wins: 0,
           losses: 1,
           goalsShot: 2,
-          goalsReceived: 5
+          goalsReceived: 5,
+          points: 0,
+          pointsWithCloseScores: 0,
+          closeGames: 0,
         },
         {
           id: 3,
@@ -42,7 +51,10 @@ describe('gameData', () => {
           wins: 1,
           losses: 1,
           goalsShot: 7,
-          goalsReceived: 7
+          goalsReceived: 7,
+          points: 3,
+          pointsWithCloseScores: 3,
+          closeGames: 0,
         },
       ]
     );

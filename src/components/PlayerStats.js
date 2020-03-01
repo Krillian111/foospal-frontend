@@ -19,8 +19,8 @@ const PlayerStats = ({ title, playerStats,
     {text:'Player', onClick: sortByPlayer}, 
     {text:'Win rate', onClick: sortByWinRate}, 
     {text:'Goal difference', onClick: sortByGoalDifference}, 
-    {text: 'Points', onClick: sortByPoints},
-    {text: 'Pts (close)', onClick: sortByPointsClose},
+    {text: 'Pts (avg)', onClick: sortByPoints},
+    {text: 'Pts (avg, close)', onClick: sortByPointsClose},
     {text: 'Close games', onClick: sortByCloseRate},
   ];
   const dataRows = playerStats.map((stats) => {
@@ -29,8 +29,8 @@ const PlayerStats = ({ title, playerStats,
         stats.name,
         Math.trunc(((stats.wins/(stats.wins+stats.losses))*100))+'%',
         stats.goalsShot-stats.goalsReceived,
-        stats.points,
-        stats.pointsWitCloseScores,
+        (Math.trunc(((stats.points/(stats.wins+stats.losses))*100)))/100,
+        (Math.trunc(((stats.pointsWithCloseScores/(stats.wins+stats.losses))*100)))/100,
         Math.trunc(((stats.closeGames/(stats.wins+stats.losses))*100))+'%',
       ];
     });

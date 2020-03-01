@@ -35,3 +35,15 @@ export const compareUsingCloseRate = (stats1, stats2) => {
   const closeGames2 = stats2.closeGames/(stats2.wins+stats2.losses);
   return -1 * simpleCompare(closeGames1, closeGames2);
 }
+
+export const compareUsingPointsAvg = (stats1, stats2) => {
+  const closeGames1 = stats1.points/(stats1.wins+stats1.losses);
+  const closeGames2 = stats2.points/(stats2.wins+stats2.losses);
+  return -1 * simpleCompare(closeGames1, closeGames2);
+}
+
+export const compareUsingPointsCloseAvg = (stats1, stats2) => {
+  const closeGames1 = stats1.pointsWithCloseScores/(stats1.wins+stats1.losses);
+  const closeGames2 = stats2.pointsWithCloseScores/(stats2.wins+stats2.losses);
+  return -1 * simpleCompare(closeGames1, closeGames2);
+}

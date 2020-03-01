@@ -6,7 +6,9 @@ import { compareUsingWinRate,
   compareUsingGoalDifference, 
   compareUsingCloseRate, 
   compareAscendingUsing, 
-  compareDescendingUsing } from './sortUtil';
+  compareDescendingUsing, 
+  compareUsingPointsAvg,
+  compareUsingPointsCloseAvg} from './sortUtil';
 import { ACTION_SORT_STATS_BY_CLOSE_RATE } from '../actions/sortStatsByCloseRate';
 import { ACTION_SORT_STATS_BY_POINTS } from '../actions/sortStatsByPoints';
 import { ACTION_SORT_STATS_BY_POINTS_CLOSE } from '../actions/sortStatsByPointsClose';
@@ -55,7 +57,7 @@ function mapGamesToPlayerStats(games) {
           losses: 0,
           closeGames: 0,
           points: 0,
-          pointsWitCloseScores: 0,
+          pointsWithCloseScores: 0,
           goalsShot: 0,
           goalsReceived: 0,
         });
@@ -67,11 +69,11 @@ function mapGamesToPlayerStats(games) {
       if(win) {
         currentPlayerStats.wins += 1;
         currentPlayerStats.points += 3;
-        currentPlayerStats.pointsWitCloseScores += closeGame ? 2 : 3;
+        currentPlayerStats.pointsWithCloseScores += closeGame ? 2 : 3;
       } else {
         currentPlayerStats.losses += 1;
         if(closeGame) {
-          currentPlayerStats.pointsWitCloseScores += 1;
+          currentPlayerStats.pointsWithCloseScores += 1;
         }
       }
     })
@@ -129,7 +131,7 @@ const gameData = (state = initialState, action) => {
       };
     }
     case ACTION_SORT_STATS_BY_POINTS: {
-      const sortedStats = state.playerStats.sort(compareDescendingUsing('points'))
+      const sortedStats = state.playerStats.sort(compareUsingPointsAvg)
         .filter(() => true); // force redux to notice state change by creating new array
       return {
         ...state,
@@ -137,7 +139,7 @@ const gameData = (state = initialState, action) => {
       };
     }
     case ACTION_SORT_STATS_BY_POINTS_CLOSE: {
-      const sortedStats = state.playerStats.sort(compareDescendingUsing('pointsWitCloseScores'))
+      const sortedStats = state.playerStats.sort(compareUsingPointsCloseAvg)
         .filter(() => true); // force redux to notice state change by creating new array
       return {
         ...state,
