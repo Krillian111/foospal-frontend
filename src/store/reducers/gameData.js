@@ -76,7 +76,7 @@ const gameData = (state = initialState, action) => {
       };
     }
     case ACTION_SORT_STATS_BY_PLAYER: {
-      state.playerStats.sort((stats1, stats2) => {
+      const sortedStats = state.playerStats.sort((stats1, stats2) => {
         let comparison = 0;
         if (stats1.name > stats2.name) {
           comparison = 1;
@@ -84,11 +84,12 @@ const gameData = (state = initialState, action) => {
           comparison = -1;
         }
         return comparison;
-      });
-      return {
+      })
+      .filter(() => true); // force redux to notice state change
+      return Object.assign({}, {
         ...state,
-      }
-
+        playerStats: sortedStats,
+      });  
     }
     default:
       return state;
