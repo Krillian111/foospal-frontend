@@ -9,12 +9,18 @@ const PlayerStats = ({ title, playerStats, sortByPlayer, sortByWinRate, sortByGo
     SimpleTable.supportedDataTypes.stringLong,
     SimpleTable.supportedDataTypes.numberShort,
     SimpleTable.supportedDataTypes.numberShort,
+    SimpleTable.supportedDataTypes.numberShort,
+    SimpleTable.supportedDataTypes.numberShort,
+    SimpleTable.supportedDataTypes.numberShort,
   ]
   const tableHeaders = [
     {text:'Id'}, 
     {text:'Player', onClick: sortByPlayer}, 
     {text:'Win rate', onClick: sortByWinRate}, 
     {text:'Goal difference', onClick: sortByGoalDifference}, 
+    {text: 'Points'},
+    {text: 'Pts (close)'},
+    {text: 'Close games'}
   ];
   const dataRows = playerStats.map((stats) => {
       return [
@@ -22,6 +28,9 @@ const PlayerStats = ({ title, playerStats, sortByPlayer, sortByWinRate, sortByGo
         stats.name,
         ((stats.wins/(stats.wins+stats.losses)).toFixed(2)*100)+'%',
         stats.goalsShot-stats.goalsReceived,
+        stats.points,
+        stats.pointsWitCloseScores,
+        ((stats.closeGames/(stats.wins+stats.losses)).toFixed(2)*100)+'%',
       ];
     });
 

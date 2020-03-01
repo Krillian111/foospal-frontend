@@ -27,23 +27,28 @@ function mapGamesToPlayerStats(games) {
   games.forEach(game => {
     [{
       name: game.playerA,
-      win: game.scoreA > game.scoreB ? true : false,
+      win: game.scoreA > game.scoreB,
+      closeGame: Math.abs(game.scoreA-game.scoreB) <= 1,
       playerScore: game.scoreA,
       opponentScore: game.scoreB,
     },
     {
       name: game.playerB,
-      win: game.scoreB > game.scoreA ? true : false,
+      win: game.scoreB > game.scoreA,
       playerScore: game.scoreB,
+      closeGame: Math.abs(game.scoreA-game.scoreB) <= 1,
       opponentScore: game.scoreA,
     }]
-    .forEach(({name, win, playerScore, opponentScore})=> {
+    .forEach(({name, win, closeGame, playerScore, opponentScore})=> {
       if(!playerStats.find(stats => stats.name===name)){
         playerStats.push({
           id: playerId++,
           name,
           wins: 0,
           losses: 0,
+          closeGames: 0,
+          points: 0,
+          pointsWitCloseScores: 0,
           goalsShot: 0,
           goalsReceived: 0,
         });
@@ -51,10 +56,16 @@ function mapGamesToPlayerStats(games) {
       const currentPlayerStats = playerStats.find(stats => stats.name===name);
       currentPlayerStats.goalsShot += playerScore;
       currentPlayerStats.goalsReceived += opponentScore;
+      currentPlayerStats.closeGames += closeGame;
       if(win) {
         currentPlayerStats.wins += 1;
+        currentPlayerStats.points += 3;
+        currentPlayerStats.pointsWitCloseScores += closeGame ? 2 : 3;
       } else {
         currentPlayerStats.losses += 1;
+        if(closeGame) {
+          currentPlayerStats.pointsWitCloseScores += 1;
+        }
       }
     })
     

@@ -7,6 +7,7 @@ const Header = styled.h2`
 `;
 
 const Table = styled.div`
+  width: 100%;
   display: table;
   background-color: lightgrey;
 `;
