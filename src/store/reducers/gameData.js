@@ -1,5 +1,6 @@
 import { ACTION_PARSE_CSV } from '../actions/parseCsv';
 import { ACTION_SORT_STATS_BY_PLAYER } from '../actions/sortStatsByPlayer';
+import { sortBy } from './sortUtil';
 
 function parseCsvToPlayers(csvAsText) {
   const games = csvAsText
@@ -76,16 +77,8 @@ const gameData = (state = initialState, action) => {
       };
     }
     case ACTION_SORT_STATS_BY_PLAYER: {
-      const sortedStats = state.playerStats.sort((stats1, stats2) => {
-        let comparison = 0;
-        if (stats1.name > stats2.name) {
-          comparison = 1;
-        } else if (stats1.name < stats2.name) {
-          comparison = -1;
-        }
-        return comparison;
-      })
-      .filter(() => true); // force redux to notice state change
+      const sortedStats = state.playerStats.sort(sortBy('name'))
+        .filter(() => true); // force redux to notice state change by creating new array
       return Object.assign({}, {
         ...state,
         playerStats: sortedStats,
