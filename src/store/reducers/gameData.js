@@ -1,6 +1,8 @@
 import { ACTION_PARSE_CSV } from '../actions/parseCsv';
 import { ACTION_SORT_STATS_BY_PLAYER } from '../actions/sortStatsByPlayer';
-import { sortBy } from './sortUtil';
+import { ACTION_SORT_STATS_BY_GOAL_DIFFERENCE } from '../actions/sortStatsByGoalDifference';
+import { ACTION_SORT_STATS_BY_WIN_RATE } from '../actions/sortStatsByWinRate';
+import { compareUsing, compareUsingWinRate, compareUsingGoalDifference } from './sortUtil';
 
 function parseCsvToPlayers(csvAsText) {
   const games = csvAsText
@@ -77,12 +79,28 @@ const gameData = (state = initialState, action) => {
       };
     }
     case ACTION_SORT_STATS_BY_PLAYER: {
-      const sortedStats = state.playerStats.sort(sortBy('name'))
+      const sortedStats = state.playerStats.sort(compareUsing('name'))
         .filter(() => true); // force redux to notice state change by creating new array
-      return Object.assign({}, {
+      return {
         ...state,
         playerStats: sortedStats,
-      });  
+      };
+    }
+    case ACTION_SORT_STATS_BY_WIN_RATE: {
+      const sortedStats = state.playerStats.sort(compareUsingWinRate)
+        .filter(() => true); // force redux to notice state change by creating new array
+      return {
+        ...state,
+        playerStats: sortedStats,
+      };
+    }
+    case ACTION_SORT_STATS_BY_GOAL_DIFFERENCE: {
+      const sortedStats = state.playerStats.sort(compareUsingGoalDifference)
+        .filter(() => true); // force redux to notice state change by creating new array
+      return {
+        ...state,
+        playerStats: sortedStats,
+      };
     }
     default:
       return state;
