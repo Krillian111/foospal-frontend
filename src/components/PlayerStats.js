@@ -27,11 +27,11 @@ const PlayerStats = ({ title, playerStats,
       return [
         stats.id,
         stats.name,
-        ((stats.wins/(stats.wins+stats.losses)).toFixed(2)*100)+'%',
+        Math.trunc(((stats.wins/(stats.wins+stats.losses))*100))+'%',
         stats.goalsShot-stats.goalsReceived,
         stats.points,
         stats.pointsWitCloseScores,
-        ((stats.closeGames/(stats.wins+stats.losses)).toFixed(2)*100)+'%',
+        Math.trunc(((stats.closeGames/(stats.wins+stats.losses))*100))+'%',
       ];
     });
 
