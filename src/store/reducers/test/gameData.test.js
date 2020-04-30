@@ -1,11 +1,11 @@
 import fs from 'fs';
-import gameData from '../../../store/reducers/gameData';
-import { ACTION_PARSE_CSV } from '../../../store/actions/parseCsv';
-import { PlayerStats } from '../../../store/data/playerStats';
-import { SingleGame } from '../../../store/data/singleGame';
+import gameData from '../gameData';
+import { ACTION_PARSE_CSV } from '../../actions/parseCsv';
+import { PlayerStats } from '../../data/playerStats';
+import { SingleGame } from '../../data/singleGame';
 
 describe('gameData', () => {
-  const testCsvFile = fs.readFileSync(process.cwd() + '/src/test/store/reducers/testData.csv').toString();
+  const testCsvFile = fs.readFileSync(process.cwd() + '/src/store/reducers/test/testData.csv').toString();
   
   test('file is mapped to playerStats', () => {
     const actualState = gameData({}, {
