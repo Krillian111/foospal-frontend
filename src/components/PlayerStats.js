@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cellDataType from './common/cellDataType';
 import SimpleTable from './common/SimpleTable';
 import { mapToWinRate, mapToGoalDifference, mapToPointsAvg, mapToPointsCloseAvg, mapToCloseGameRate, mapToTotalGames } from '../store/data/playerStats';
 import { cutOffAfterTwoDecimal, convertToPercentage } from './utils/formatter';
@@ -8,14 +9,14 @@ import { cutOffAfterTwoDecimal, convertToPercentage } from './utils/formatter';
 const PlayerStats = ({ title, playerStats,
   sortByPlayer, sortByWinRate, sortByTotalGames, sortByGoalDifference, sortByPoints, sortByPointsClose, sortByCloseRate}) => {
   const columnConfigs = [
-    SimpleTable.supportedDataTypes.numberShort,
-    SimpleTable.supportedDataTypes.stringLong,
-    SimpleTable.supportedDataTypes.numberShort,
-    SimpleTable.supportedDataTypes.numberShort,
-    SimpleTable.supportedDataTypes.numberShort,
-    SimpleTable.supportedDataTypes.numberShort,
-    SimpleTable.supportedDataTypes.numberShort,
-    SimpleTable.supportedDataTypes.numberShort,
+    cellDataType.numberShort,
+    cellDataType.stringLong,
+    cellDataType.numberShort,
+    cellDataType.numberShort,
+    cellDataType.numberShort,
+    cellDataType.numberShort,
+    cellDataType.numberShort,
+    cellDataType.numberShort,
   ]
   const tableHeaders = [
     {text: 'Id'}, 

@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SimpleTable from './common/SimpleTable';
+import cellDataType from './common/cellDataType';
 
 const GameList = ({ title, games }) => {
 
   const columnConfigs = [
-    SimpleTable.supportedDataTypes.numberShort,
-    SimpleTable.supportedDataTypes.stringLong,
-    SimpleTable.supportedDataTypes.stringLong,
-    SimpleTable.supportedDataTypes.numberShort,
-    SimpleTable.supportedDataTypes.numberShort,
+    cellDataType.numberShort,
+    cellDataType.stringLong,
+    cellDataType.stringLong,
+    cellDataType.numberShort,
+    cellDataType.numberShort,
   ]
   const tableHeaders = [
     {text:'Game'}, 
