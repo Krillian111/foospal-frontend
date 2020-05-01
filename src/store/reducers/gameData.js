@@ -8,6 +8,7 @@ import { ACTION_SORT_STATS_BY_POINTS_CLOSE } from '../actions/sortStatsByPointsC
 import { PlayerStats, updatePlayerFromSingleGame } from '../data/playerStats';
 import { SingleGame, fromPerspectiveOfA, fromPerspectiveOfB } from '../data/singleGame';
 import { ACTION_SORT_STATS_BY_TOTAL_GAMES } from '../actions/sortStatsByTotalGames';
+import { FETCH_SINGLES_FROM_BACKEND } from '../actions/backend/fetchSingles';
 
 const initialState = {
     games: [],
@@ -25,6 +26,14 @@ const gameData = (state = initialState, action) => {
         playerStats,
       };
     }
+    case FETCH_SINGLES_FROM_BACKEND + "_SUCCESS":
+      const games = action.payload.data.singles.map(renameIdField);
+      const playerStats = mapGamesToPlayerStats(games);
+      return {
+        ...state,
+        games,
+        playerStats,
+      }
     case ACTION_SORT_STATS_BY_PLAYER: 
     case ACTION_SORT_STATS_BY_WIN_RATE:
     case ACTION_SORT_STATS_BY_GOAL_DIFFERENCE:
@@ -79,6 +88,13 @@ function mapGamesToPlayerStats(games) {
     });
   })
   return playerStats;
+}
+
+function renameIdField (single) {
+  const _id = single._id;
+  delete single._id;
+  single.id = _id;
+  return single;
 }
 
 export default gameData;
