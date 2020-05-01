@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import GameList from '../components/GameList';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
     games: state.gameData.games,
     title: 'Games',
 });

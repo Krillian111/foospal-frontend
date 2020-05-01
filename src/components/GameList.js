@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SimpleTable from './common/SimpleTable';
-import cellDataType from './common/cellDataType';
+import SimpleTable from './table/SimpleTable';
+import cellDataType from './table/cellDataType';
 
 const GameList = ({ title, games }) => {
     const columnConfigs = [
@@ -34,7 +34,15 @@ const GameList = ({ title, games }) => {
 
 GameList.propTypes = {
     title: PropTypes.string.isRequired,
-    games: PropTypes.array.isRequired,
+    games: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            playerA: PropTypes.string,
+            playerB: PropTypes.string,
+            scoreA: PropTypes.number,
+            scoreB: PropTypes.number,
+        })
+    ).isRequired,
 };
 
 export default GameList;

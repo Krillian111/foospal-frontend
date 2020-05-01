@@ -8,19 +8,19 @@ import { sortStatsByPointsClose } from '../store/actions/sortStatsByPointsClose'
 import { sortStatsByCloseRate } from '../store/actions/sortStatsByCloseRate';
 import { sortStatsByTotalGames } from '../store/actions/sortStatsByTotalGames';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
     playerStats: state.gameData.playerStats,
     title: 'Stats',
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    sortByPlayer: () => dispatch(sortStatsByPlayer()),
-    sortByWinRate: () => dispatch(sortStatsByWinRate()),
-    sortByTotalGames: () => dispatch(sortStatsByTotalGames()),
-    sortByGoalDifference: () => dispatch(sortStatsByGoalDifference()),
-    sortByPoints: () => dispatch(sortStatsByPoints()),
-    sortByPointsClose: () => dispatch(sortStatsByPointsClose()),
-    sortByCloseRate: () => dispatch(sortStatsByCloseRate()),
-});
+const mapDispatchToProps = {
+    sortByPlayer: sortStatsByPlayer,
+    sortByTotalGames: sortStatsByTotalGames,
+    sortByWinRate: sortStatsByWinRate,
+    sortByGoalDifference: sortStatsByGoalDifference,
+    sortByPoints: sortStatsByPoints,
+    sortByPointsClose: sortStatsByPointsClose,
+    sortByCloseRate: sortStatsByCloseRate,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerList);

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TableRow from './TableRow';
+import cellDataType from './cellDataType';
 
 const Header = styled.h2`
     font-size: 1.5em;
@@ -48,19 +49,23 @@ function SimpleTable({ title, columnConfigs, tableHeaders, dataRows }) {
                 <TableHeaderRow>
                     {tableHeaders.map(({ text, onClick }, index) => (
                         <TableRow
-                            key={index}
+                            key={text}
                             columnType={columnConfigs[index]}
                             content={text}
                             onClick={onClick}
                         />
                     ))}
                 </TableHeaderRow>
-                {dataRows.map((dataRow, index) => (
-                    <StyledTableRow rowIndex={index + 1} key={index}>
-                        {dataRow.map((value, index) => (
+                {dataRows.map((dataRow, rowIndex) => (
+                    // TODO: fix key assignment
+                    // eslint-disable-next-line react/no-array-index-key
+                    <StyledTableRow rowIndex={rowIndex + 1} key={rowIndex}>
+                        {dataRow.map((value, cellIndex) => (
                             <TableRow
-                                key={index}
-                                columnType={columnConfigs[index]}
+                                // TODO: fix key assignment
+                                // eslint-disable-next-line react/no-array-index-key
+                                key={cellIndex}
+                                columnType={columnConfigs[cellIndex]}
                                 content={value}
                             />
                         ))}
@@ -73,14 +78,20 @@ function SimpleTable({ title, columnConfigs, tableHeaders, dataRows }) {
 
 SimpleTable.propTypes = {
     title: PropTypes.string.isRequired,
-    columnConfigs: PropTypes.array.isRequired,
+    columnConfigs: PropTypes.arrayOf(
+        PropTypes.oneOf(Object.values(cellDataType))
+    ).isRequired,
     tableHeaders: PropTypes.arrayOf(
         PropTypes.shape({
             text: PropTypes.string.isRequired,
             onClick: PropTypes.func,
         })
     ).isRequired,
-    dataRows: PropTypes.arrayOf(PropTypes.array).isRequired,
+    dataRows: PropTypes.arrayOf(
+        PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        )
+    ).isRequired,
 };
 
 export default SimpleTable;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cellDataType from './common/cellDataType';
-import SimpleTable from './common/SimpleTable';
+import cellDataType from './table/cellDataType';
+import SimpleTable from './table/SimpleTable';
 import {
     mapToWinRate,
     mapToGoalDifference,
@@ -16,8 +16,8 @@ const PlayerStats = ({
     title,
     playerStats,
     sortByPlayer,
-    sortByWinRate,
     sortByTotalGames,
+    sortByWinRate,
     sortByGoalDifference,
     sortByPoints,
     sortByPointsClose,
@@ -68,8 +68,19 @@ const PlayerStats = ({
 
 PlayerStats.propTypes = {
     title: PropTypes.string.isRequired,
-    playerStats: PropTypes.array.isRequired,
+    playerStats: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            name: PropTypes.string,
+        })
+    ).isRequired,
     sortByPlayer: PropTypes.func.isRequired,
+    sortByTotalGames: PropTypes.func.isRequired,
+    sortByWinRate: PropTypes.func.isRequired,
+    sortByGoalDifference: PropTypes.func.isRequired,
+    sortByPoints: PropTypes.func.isRequired,
+    sortByPointsClose: PropTypes.func.isRequired,
+    sortByCloseRate: PropTypes.func.isRequired,
 };
 
 export default PlayerStats;
