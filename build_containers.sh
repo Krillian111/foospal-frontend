@@ -31,6 +31,9 @@ else
     FRONTEND_VERSION=${FRONTEND:-master}
 fi
 
+echo "Stopping current containers"
+docker-compose down
+
 echo "Setting versions in docker-compose.yml"
 sed -i -e 's/image:\ foospal-backend:.*/image:\ foospal-backend:'"${BACKEND_VERSION}"'/g' docker-compose.yml
 sed -i -e 's/image:\ foospal-frontend:.*/image:\ foospal-frontend:'"${FRONTEND_VERSION}"'/g' docker-compose.yml
