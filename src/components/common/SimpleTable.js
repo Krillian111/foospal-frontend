@@ -5,23 +5,43 @@ import TableRow from './TableRow';
 
 const Header = styled.h2`
   font-size: 1.5em;
+  /* was heißt em? */
 `;
 
 const Table = styled.div`
-  width: 100%;
+  width: max-content;
+  /* hier wollen wir noch modifizieren - Spaltenbreite */
   display: table;
   background-color: lightgrey;
+  overflow: hidden;
+  border-radius: 15px;
+  border-width: 10px;
+  border-style: solid;
+  /* grauer Rand außenrum */
+  border-collapse: separate;
+  border-spacing: 5px 3px;
+  /* graue Linien zwischen den Zeilen / Spalten */
+  line-height: 2
+  /* kann eigtl weg, wenn wir es geschafft haben, dass padding funktioniert */
 `;
 
 const TableHeaderRow = styled.div`
+  /* Überschriftenzeile in der Tabelle */
   display: table-row;
-  background-color: green;
+  font-size: 1.2em;
+  background-color: rgba(170, 70, 10, 0.25);
   border-radius: 20px; 
-`;
+  font-weight: bold;
+  color: rgba(0, 128, 0, 1);
+  line-height: 2;
+  white-space: nowrap;
+  /* kein Zeilenumbruch - dadurch Spalten breiter */;
+  `;
 
 const StyledTableRow = styled.div`
+  /* Zeilen der Tabelle */
   display: table-row;
-  background-color: ${props => props.rowIndex % 2 === 1 ? 'powderblue' : 'bisque'};
+  background-color: ${props => props.rowIndex % 2 === 1 ? 'rgba(68, 255, 30, 0.5)' : 'rgba(68, 255, 30, 0.3)'};
   border: 2px solid lightgrey;
   border-radius: 3px;
 `;
@@ -36,6 +56,7 @@ function SimpleTable({ title, columnConfigs, tableHeaders, dataRows }) {
       throw new Error(`Error, received ${columnConfigs.length} column configs, ${tableHeaders.length} headers and ${dataRows[0].length} rows`);
     }
   }
+/* sandra: was bedeutet diese function? */
 
   return(
     <div>
