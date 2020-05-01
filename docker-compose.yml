@@ -20,6 +20,8 @@ services:
         image: foospal-backend:development
         container_name: foospal-backend
         restart: always
+        ports:
+            - "3000:3000/tcp"
         healthcheck:
             test: curl localhost:3000
             interval: 30s
