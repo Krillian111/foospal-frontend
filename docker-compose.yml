@@ -20,6 +20,10 @@ services:
         image: foospal-backend:development
         container_name: foospal-backend
         restart: always
+        environment:
+            PORT: "3000"
+            DB_URL: "mongodb://mongo:27017/practice-stats"
+            ACCESSTOKENSECRET: "testing"
         ports:
             - "3000:3000/tcp"
         healthcheck:
