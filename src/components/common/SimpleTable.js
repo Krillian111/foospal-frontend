@@ -15,7 +15,7 @@ const Table = styled.div`
 
 const TableHeaderRow = styled.div`
   display: table-row;
-  background-color: lightcoral;
+  background-color: green;
   border-radius: 20px; 
 `;
 
