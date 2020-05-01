@@ -6,7 +6,7 @@ import PlayerStats from './containers/PlayerStats';
 
 const Root = styled.div`
 font-family: 'Roboto';
-background-color: cyan;
+background-color: #d2e6cf;
 `;
 
 function App() {

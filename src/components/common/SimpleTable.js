@@ -21,15 +21,17 @@ const Table = styled.div`
   border-collapse: separate;
   border-spacing: 5px 3px;
   /* graue Linien zwischen den Zeilen / Spalten */
-  line-height: 2
+  line-height: 2;
   /* kann eigtl weg, wenn wir es geschafft haben, dass padding funktioniert */
+  margin: 0 100px;
+  /*rückt die Tabelle ein bisschen nach rechts ein - die null rückt sie um null nach unten*/
 `;
 
 const TableHeaderRow = styled.div`
   /* Überschriftenzeile in der Tabelle */
   display: table-row;
   font-size: 1.2em;
-  background-color: rgba(170, 70, 10, 0.25);
+  background-color: #be8595;
   border-radius: 20px; 
   font-weight: bold;
   color: rgba(0, 128, 0, 1);
@@ -41,7 +43,7 @@ const TableHeaderRow = styled.div`
 const StyledTableRow = styled.div`
   /* Zeilen der Tabelle */
   display: table-row;
-  background-color: ${props => props.rowIndex % 2 === 1 ? 'rgba(68, 255, 30, 0.5)' : 'rgba(68, 255, 30, 0.3)'};
+  background-color: ${props => props.rowIndex % 2 === 1 ? '#adbe85' : '#5f8059'};
   border: 2px solid lightgrey;
   border-radius: 3px;
 `;
