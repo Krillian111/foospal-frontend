@@ -15,7 +15,7 @@ const Table = styled.div`
   background-color: lightgrey;
   overflow: hidden;
   border-radius: 15px;
-  border-width: 10px;
+  border-width: 5px;
   border-style: solid;
   /* grauer Rand außenrum */
   border-collapse: separate;
@@ -23,7 +23,7 @@ const Table = styled.div`
   /* graue Linien zwischen den Zeilen / Spalten */
   line-height: 2;
   /* kann eigtl weg, wenn wir es geschafft haben, dass padding funktioniert */
-  margin: 0 100px;
+  /*margin: 0 100px;*/
   /*rückt die Tabelle ein bisschen nach rechts ein - die null rückt sie um null nach unten*/
 `;
 
