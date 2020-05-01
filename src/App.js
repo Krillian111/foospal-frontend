@@ -1,7 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
 import GameList from './containers/GameList';
 import CsvUpload from './containers/CsvUpload';
-import styled from 'styled-components';
+import FetchSinglesButton from './containers/FetchSinglesButton';
 import PlayerStats from './containers/PlayerStats';
 
 const Root = styled.div`
@@ -13,6 +14,7 @@ function App() {
     <Root className="App">
       <header className="App-header">
         <CsvUpload />
+        <FetchSinglesButton />
         <PlayerStats />
         <GameList />
       </header>

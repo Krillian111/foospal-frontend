@@ -28,7 +28,7 @@ const StyledTableRow = styled.div`
 
 
 function SimpleTable({ title, columnConfigs, tableHeaders, dataRows }) {
-  if(dataRows.length !== 0){
+  if (dataRows.length !== 0) {
     const hasNotEqualConfigsAndHeaders = columnConfigs.length !== tableHeaders.length;
     const hasNotEqualConfigAndRows = columnConfigs.length !== dataRows[0].length;
     if(hasNotEqualConfigsAndHeaders || hasNotEqualConfigAndRows) {
