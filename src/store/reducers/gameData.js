@@ -30,7 +30,7 @@ const gameData = (state = initialState, action) => {
                 playerStats,
             };
         }
-        case FETCH_SINGLES_FROM_BACKEND + '_SUCCESS':
+        case `${FETCH_SINGLES_FROM_BACKEND}_SUCCESS`: {
             const games = action.payload.data.singles.map(renameIdField);
             const playerStats = mapGamesToPlayerStats(games);
             return {
@@ -38,6 +38,7 @@ const gameData = (state = initialState, action) => {
                 games,
                 playerStats,
             };
+        }
         case ACTION_SORT_STATS_BY_PLAYER:
         case ACTION_SORT_STATS_BY_WIN_RATE:
         case ACTION_SORT_STATS_BY_GOAL_DIFFERENCE:
@@ -106,7 +107,7 @@ function mapGamesToPlayerStats(games) {
 }
 
 function renameIdField(single) {
-    const _id = single._id;
+    const { _id } = single;
     delete single._id;
     single.id = _id;
     return single;
