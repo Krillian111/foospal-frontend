@@ -8,7 +8,7 @@ import App from './App';
 import rootReducer from './store/reducers/rootReducer';
 
 const client = axios.create({
-    baseURL: process.env.BACKEND_URL || 'http://localhost:4000',
+    baseURL: 'http://localhost:3000', // TODO: this needs to be injected somehow
     responseType: 'json',
 });
 
