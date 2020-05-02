@@ -5,7 +5,7 @@ services:
         container_name: mongo
         restart: always
         volumes:
-            - ./mongodb-data:/data/db
+            - ../mongodb-data:/data/db
         healthcheck:
             test: 'bash -c "if mongo --eval ''quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)''; then exit 0; fi; exit 1;"'
             interval: 30s
@@ -15,6 +15,8 @@ services:
 
     foosball_backend:
         image: foospal-backend:development
+        build:
+            context: ../foospal-backend/
         container_name: foospal-backend
         restart: always
         ports:
@@ -35,6 +37,8 @@ services:
 
     foosball_frontend:
         image: foospal-frontend:development
+        build:
+            context: ./
         container_name: foospal-frontend
         ports:
             - '8080:8080/tcp'
