@@ -7,8 +7,11 @@ import axiosMiddleware from 'redux-axios-middleware';
 import App from './App';
 import rootReducer from './store/reducers/rootReducer';
 
+// eslint-disable-next-line no-restricted-globals
+const hostname = location.hostname || 'localhost'; // TODO: this needs to be injected somehow
+
 const client = axios.create({
-    baseURL: 'http://localhost:4000', // TODO: this needs to be injected somehow
+    baseURL: `http://${hostname}:4000`,
     responseType: 'json',
 });
 
