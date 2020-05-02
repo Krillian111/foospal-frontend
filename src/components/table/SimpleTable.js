@@ -7,21 +7,47 @@ import TableHeaderRow from './TableHeaderRow';
 
 const Header = styled.h2`
     font-size: 1.5em;
+    color: #35524a;
+    margin: 0px 20px;
 `;
 
 const Table = styled.div`
     width: max-content;
     display: table;
-    background-color: lightgrey;
+    background-color: #35524a;
     overflow: hidden;
     border-radius: 15px;
-    border-width: 5px;
+    border-width: 2px;
     border-style: solid;
     border-collapse: separate;
-    border-spacing: 5px 3px;
+    border-color: #35524a;
+    border-spacing: 1px 0px;
     line-height: 2;
+    margin: 20px 20px;
 `;
 
+<<<<<<< HEAD
+=======
+const TableHeaderRow = styled.div`
+    display: table-row;
+    font-size: 1.05em;
+    background-color: #35524a;
+    border-radius: 12px;
+    font-weight: normal;
+    color: #a2e8dd;
+    line-height: 2;
+    white-space: nowrap;
+`;
+
+const StyledTableRow = styled.div`
+    display: table-row;
+    background-color: ${(props) =>
+        props.rowIndex % 2 === 1 ? '#627ca588' : '#779cab'};
+    border: 2px solid 35524a;
+    border-radius: 3px;
+`;
+
+>>>>>>> Farbschema auf alles übernommen
 function SimpleTable({ title, columnConfigs, tableHeaders, dataRows }) {
     if (dataRows.length !== 0) {
         const hasNotEqualConfigsAndHeaders =
