@@ -9,21 +9,33 @@ const Header = styled.h2`
 `;
 
 const Table = styled.div`
-    width: 100%;
+    width: max-content;
     display: table;
     background-color: lightgrey;
+    overflow: hidden;
+    border-radius: 15px;
+    border-width: 5px;
+    border-style: solid;
+    border-collapse: separate;
+    border-spacing: 5px 3px;
+    line-height: 2;
 `;
 
 const TableHeaderRow = styled.div`
     display: table-row;
-    background-color: lightcoral;
+    font-size: 1.2em;
+    background-color: #be8595;
     border-radius: 20px;
+    font-weight: bold;
+    color: rgba(0, 128, 0, 1);
+    line-height: 2;
+    white-space: nowrap;
 `;
 
 const StyledTableRow = styled.div`
     display: table-row;
     background-color: ${(props) =>
-        props.rowIndex % 2 === 1 ? 'powderblue' : 'bisque'};
+        props.rowIndex % 2 === 1 ? '#adbe85' : '#5f8059'};
     border: 2px solid lightgrey;
     border-radius: 3px;
 `;

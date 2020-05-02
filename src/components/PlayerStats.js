@@ -35,7 +35,7 @@ const PlayerStats = ({
     ];
     const tableHeaders = [
         { text: 'Id' },
-        { text: 'Player', onClick: sortByPlayer },
+        { text: 'Player   ', onClick: sortByPlayer },
         { text: 'Games', onClick: sortByTotalGames },
         { text: 'Win rate', onClick: sortByWinRate },
         { text: 'Goal diff', onClick: sortByGoalDifference },
