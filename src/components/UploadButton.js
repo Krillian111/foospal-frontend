@@ -31,7 +31,7 @@ const StyledUploadButton = styled.button`
     margin: 20px 20px;
 `;
 
-const UploadButton = ({ onChangeIdConsumer }) => {
+function UploadButton({ onChangeIdConsumer }) {
     const csvInputId = 'csv-input-id';
     return (
         <StyledButtonWrapper>
@@ -43,7 +43,7 @@ const UploadButton = ({ onChangeIdConsumer }) => {
             />
         </StyledButtonWrapper>
     );
-};
+}
 
 UploadButton.propTypes = {
     onChangeIdConsumer: PropTypes.func.isRequired,

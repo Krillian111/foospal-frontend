@@ -12,7 +12,7 @@ import {
 } from '../store/data/playerStats';
 import { cutOffAfterTwoDecimal, convertToPercentage } from './utils/formatter';
 
-const PlayerStats = ({
+function PlayerStats({
     title,
     playerStats,
     sortByPlayer,
@@ -22,7 +22,7 @@ const PlayerStats = ({
     sortByPoints,
     sortByPointsClose,
     sortByCloseRate,
-}) => {
+}) {
     const columnConfigs = [
         cellDataType.numberShort,
         cellDataType.stringLong,
@@ -64,7 +64,7 @@ const PlayerStats = ({
             dataRows={dataRows}
         />
     );
-};
+}
 
 PlayerStats.propTypes = {
     title: PropTypes.string.isRequired,
