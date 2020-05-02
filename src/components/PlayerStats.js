@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cellDataType from './common/cellDataType';
-import SimpleTable from './common/SimpleTable';
+import cellDataType from './table/cellDataType';
+import SimpleTable from './table/SimpleTable';
 import { mapToWinRate, mapToGoalDifference, mapToPointsAvg, mapToPointsCloseAvg, mapToCloseGameRate, mapToTotalGames } from '../store/data/playerStats';
 import { cutOffAfterTwoDecimal, convertToPercentage } from './utils/formatter';
 

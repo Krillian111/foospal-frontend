@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SimpleTable from './common/SimpleTable';
-import cellDataType from './common/cellDataType';
+import SimpleTable from './table/SimpleTable';
+import cellDataType from './table/cellDataType';
 
 const GameList = ({ title, games }) => {
 

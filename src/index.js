@@ -8,7 +8,7 @@ import App from './App';
 import rootReducer from './store/reducers/rootReducer';
 
 const client = axios.create({
-  baseURL:'http://localhost:4000', // TODO: extract into environment variable
+  baseURL: process.env.BACKEND_URL || 'http://localhost:4000',
   responseType: 'json',
 });
 

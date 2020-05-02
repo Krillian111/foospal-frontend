@@ -4,9 +4,6 @@ services:
         image: mongo:latest
         container_name: mongo
         restart: always
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: root
-            MONGO_INITDB_ROOT_PASSWORD: password
         volumes:
             - ./mongodb-data:/data/db
         healthcheck:
@@ -28,6 +25,13 @@ services:
             timeout: 10s
             retries: 5
             start_period: 10s
+        depends_on:
+            - mongo
+        environment:
+            ACCESSTOKENSECRET: developmentsecret
+            REFRESHTOKENSECRET: developmentsecret
+            PORT: 3000
+            DB_URL: mongodb://mongo:27017/practice-stats
 
     foosball_frontend:
         image: foospal-frontend:development
@@ -41,3 +45,5 @@ services:
             timeout: 10s
             retries: 5
             start_period: 10s
+        environment:
+            BACKEND_URL: http://localhost:3000
