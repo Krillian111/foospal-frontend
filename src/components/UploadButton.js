@@ -19,13 +19,13 @@ position: relative;
 
 const StyledUploadButton = styled.button`
   box-shadow: 0px 10px 14px -7px #276873;
-  border: 4px solid #805964;
+  border: 2px solid #805964;
   color: #805964;
   text-shadow: 0px 1px 0px #8dbe85;
   background: linear-gradient (#e66465, #9198e5);
   background-color: A8FC97;
   padding: 8px 20px;
-  border-radius: 15px;
+  border-radius: 12px;
   font-size: 20px;
   font-weight: 500;
   margin: 20px 20px;

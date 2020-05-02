@@ -5,7 +5,7 @@ import TableRow from './TableRow';
 
 const Header = styled.h2`
   font-size: 1.5em;
-  /* was heißt em? */
+  
 `;
 
 const Table = styled.div`
@@ -15,11 +15,11 @@ const Table = styled.div`
   background-color: lightgrey;
   overflow: hidden;
   border-radius: 15px;
-  border-width: 5px;
+  border-width: 3px;
   border-style: solid;
   /* grauer Rand außenrum */
   border-collapse: separate;
-  border-spacing: 5px 3px;
+  border-spacing: 3px 2px;
   /* graue Linien zwischen den Zeilen / Spalten */
   line-height: 2;
   /* kann eigtl weg, wenn wir es geschafft haben, dass padding funktioniert */
