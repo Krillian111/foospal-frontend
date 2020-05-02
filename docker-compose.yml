@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.8'
 services:
     mongo:
         image: mongo:latest
@@ -8,7 +8,7 @@ services:
             MONGO_INITDB_ROOT_USERNAME: root
             MONGO_INITDB_ROOT_PASSWORD: password
         volumes:
-            - ./mongodb-data:/data/db
+            - ../mongodb-data:/data/db
         healthcheck:
             test: "bash -c \"if mongo --eval 'quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)'; then exit 0; fi; exit 1;\""
             interval: 30s
@@ -18,8 +18,14 @@ services:
 
     foosball_backend:
         image: foospal-backend:development
+        build:
+            context: ../foospal-backend/
         container_name: foospal-backend
         restart: always
+        environment:
+            PORT: "3000"
+            DB_URL: "mongodb://mongo:27017/practice-stats"
+            ACCESSTOKENSECRET: "testing"
         ports:
             - "3000:3000/tcp"
         healthcheck:
@@ -32,6 +38,8 @@ services:
     foosball_frontend:
         image: foospal-frontend:development
         container_name: foospal-frontend
+        build:
+            context: ./
         ports:
             - "8080:8080/tcp"
         restart: always
