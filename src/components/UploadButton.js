@@ -18,14 +18,13 @@ const StyledButtonWrapper = styled.div`
 `;
 
 const StyledUploadButton = styled.button`
-    box-shadow: 0px 10px 14px -7px #276873;
-    border: 4px solid #805964;
-    color: #805964;
-    text-shadow: 0px 1px 0px #8dbe85;
+    box-shadow: 0px 10px 14px -7px #627c85;
+    border: 2px solid #35524a;
+    text-shadow: 0px 1px 0px #82e8dd;
     background: linear-gradient (#e66465, #9198e5);
-    background-color: A8FC97;
+    background-color: #32de8a;
     padding: 8px 20px;
-    border-radius: 15px;
+    border-radius: 10px;
     font-size: 20px;
     font-weight: 500;
     margin: 20px 20px;
