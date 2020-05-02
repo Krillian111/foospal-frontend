@@ -3,40 +3,47 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import cellDataType from './cellDataType';
 
-const TableCell = styled.div`
+const StyledTableCell = styled.div`
     display: table-cell;
     vertical-align: middle;
     text-align: center;
     padding: 2px;
 `;
 
-const NumberTableCell = styled(TableCell)`
+const StyledNumberTableCell = styled(StyledTableCell)`
     width: 8%;
 `;
 
-const NameTableCell = styled(TableCell)`
+const StyledNameTableCell = styled(StyledTableCell)`
     width: 30%;
 `;
 
-export default function TableRow({ columnType, content, onClick }) {
+export default function TableCell({ columnType, content, onClick }) {
     switch (columnType) {
         case cellDataType.numberShort:
             return (
-                <NumberTableCell onClick={onClick}>{content}</NumberTableCell>
+                <StyledNumberTableCell onClick={onClick}>
+                    {content}
+                </StyledNumberTableCell>
             );
         case cellDataType.stringLong:
-            return <NameTableCell onClick={onClick}>{content}</NameTableCell>;
+            return (
+                <StyledNameTableCell onClick={onClick}>
+                    {content}
+                </StyledNameTableCell>
+            );
         default:
             throw new Error(`unsupported type: ${JSON.stringify(columnType)}`);
     }
 }
 
-TableRow.propTypes = {
+StyledTableCell.propTypes = {
     columnType: PropTypes.oneOf(Object.values(cellDataType)).isRequired,
-    content: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    content: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
     onClick: PropTypes.func,
 };
 
-TableRow.defaultProps = {
+StyledTableCell.defaultProps = {
     onClick: () => {},
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import TableRow from './TableRow';
+import TableCell from './TableCell';
 import cellDataType from './cellDataType';
 
 const Header = styled.h2`
@@ -60,7 +60,7 @@ function SimpleTable({ title, columnConfigs, tableHeaders, dataRows }) {
             <Table>
                 <TableHeaderRow>
                     {tableHeaders.map(({ text, onClick }, index) => (
-                        <TableRow
+                        <TableCell
                             key={text}
                             columnType={columnConfigs[index]}
                             content={text}
@@ -73,7 +73,7 @@ function SimpleTable({ title, columnConfigs, tableHeaders, dataRows }) {
                     // eslint-disable-next-line react/no-array-index-key
                     <StyledTableRow rowIndex={rowIndex + 1} key={rowIndex}>
                         {dataRow.map((value, cellIndex) => (
-                            <TableRow
+                            <TableCell
                                 // TODO: fix key assignment
                                 // eslint-disable-next-line react/no-array-index-key
                                 key={cellIndex}
