@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SimpleTable from './table/SimpleTable';
 import cellDataType from './table/cellDataType';
 
-const GameList = ({ title, games }) => {
+function GameList({ title, games }) {
     const columnConfigs = [
         cellDataType.numberShort,
         cellDataType.stringLong,
@@ -30,7 +30,7 @@ const GameList = ({ title, games }) => {
             dataRows={dataRows}
         />
     );
-};
+}
 
 GameList.propTypes = {
     title: PropTypes.string.isRequired,
