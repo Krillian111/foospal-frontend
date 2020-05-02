@@ -51,7 +51,20 @@
         "eslint-plugin-react": "^7.19.0",
         "eslint-plugin-react-hooks": "^2.5.1",
         "eslint-plugin-react-redux": "^3.0.3",
+        "husky": "^4.2.5",
+        "lint-staged": "^10.2.2",
         "prettier": "2.0.5",
         "redux-devtools": "^3.5.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "src/**/*.{js,jsx}": [
+            "npm run lint:fix",
+            "git add"
+        ]
     }
 }
