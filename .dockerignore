@@ -1,0 +1,7 @@
+Dockerfile
+docker-compose.yml
+mongodb-data
+README.md
+build_containers.sh
+.git
+.gitignore

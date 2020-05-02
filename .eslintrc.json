@@ -1,0 +1,43 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true,
+        "jest/globals": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "plugin:react-redux/recommended",
+        "plugin:jest/recommended",
+        "airbnb",
+        "plugin:prettier/recommended",
+        "prettier/react"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": ["react", "react-redux", "prettier", "jest"],
+    "rules": {
+        "prettier/prettier": "error",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "no-use-before-define": [
+            2,
+            { "functions": false, "variables": false, "classes": true }
+        ],
+        "radix": "off",
+        "no-plusplus": "off",
+        "no-param-reassign": ["error", { "props": false }],
+        "no-underscore-dangle": [
+            "error",
+            { "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__", "_id"] }
+        ]
+    }
+}

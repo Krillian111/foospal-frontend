@@ -1,5 +1,5 @@
-import { connect } from 'react-redux'
-import PlayerList from "../components/PlayerStats"
+import { connect } from 'react-redux';
+import PlayerList from '../components/PlayerStats';
 import { sortStatsByPlayer } from '../store/actions/sortStatsByPlayer';
 import { sortStatsByWinRate } from '../store/actions/sortStatsByWinRate';
 import { sortStatsByGoalDifference } from '../store/actions/sortStatsByGoalDifference';
@@ -8,22 +8,19 @@ import { sortStatsByPointsClose } from '../store/actions/sortStatsByPointsClose'
 import { sortStatsByCloseRate } from '../store/actions/sortStatsByCloseRate';
 import { sortStatsByTotalGames } from '../store/actions/sortStatsByTotalGames';
 
-const mapStateToProps = (state, ownProps) => ({
-  playerStats: state.gameData.playerStats,
-  title: 'Stats'
+const mapStateToProps = (state) => ({
+    playerStats: state.gameData.playerStats,
+    title: 'Stats',
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  sortByPlayer: () => dispatch(sortStatsByPlayer()),
-  sortByWinRate:  () => dispatch(sortStatsByWinRate()),
-  sortByTotalGames: () => dispatch(sortStatsByTotalGames()),
-  sortByGoalDifference: () => dispatch(sortStatsByGoalDifference()),
-  sortByPoints: () => dispatch(sortStatsByPoints()),
-  sortByPointsClose: () => dispatch(sortStatsByPointsClose()),
-  sortByCloseRate: () => dispatch(sortStatsByCloseRate()),
-});
+const mapDispatchToProps = {
+    sortByPlayer: sortStatsByPlayer,
+    sortByTotalGames: sortStatsByTotalGames,
+    sortByWinRate: sortStatsByWinRate,
+    sortByGoalDifference: sortStatsByGoalDifference,
+    sortByPoints: sortStatsByPoints,
+    sortByPointsClose: sortStatsByPointsClose,
+    sortByCloseRate: sortStatsByCloseRate,
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(PlayerList)
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerList);
