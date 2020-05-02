@@ -18,7 +18,7 @@ const StyledNameTableCell = styled(StyledTableCell)`
     width: 30%;
 `;
 
-export default function TableCell({ columnType, content, onClick }) {
+function TableCell({ columnType, content, onClick }) {
     switch (columnType) {
         case cellDataType.numberShort:
             return (
@@ -47,3 +47,5 @@ StyledTableCell.propTypes = {
 StyledTableCell.defaultProps = {
     onClick: () => {},
 };
+
+export default TableCell;

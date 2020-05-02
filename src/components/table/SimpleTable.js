@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import TableCell from './TableCell';
 import cellDataType from './cellDataType';
+import TableRow from './TableRow';
+import TableHeaderRow from './TableHeaderRow';
 
 const Header = styled.h2`
     font-size: 1.5em;
@@ -19,25 +20,6 @@ const Table = styled.div`
     border-collapse: separate;
     border-spacing: 5px 3px;
     line-height: 2;
-`;
-
-const TableHeaderRow = styled.div`
-    display: table-row;
-    font-size: 1.2em;
-    background-color: #be8595;
-    border-radius: 20px;
-    font-weight: bold;
-    color: rgba(0, 128, 0, 1);
-    line-height: 2;
-    white-space: nowrap;
-`;
-
-const StyledTableRow = styled.div`
-    display: table-row;
-    background-color: ${(props) =>
-        props.rowIndex % 2 === 1 ? '#adbe85' : '#5f8059'};
-    border: 2px solid lightgrey;
-    border-radius: 3px;
 `;
 
 function SimpleTable({ title, columnConfigs, tableHeaders, dataRows }) {
@@ -58,30 +40,20 @@ function SimpleTable({ title, columnConfigs, tableHeaders, dataRows }) {
         <div>
             <Header>{title}</Header>
             <Table>
-                <TableHeaderRow>
-                    {tableHeaders.map(({ text, onClick }, index) => (
-                        <TableCell
-                            key={text}
-                            columnType={columnConfigs[index]}
-                            content={text}
-                            onClick={onClick}
-                        />
-                    ))}
-                </TableHeaderRow>
+                <TableHeaderRow
+                    tableHeaders={tableHeaders}
+                    columnConfigs={columnConfigs}
+                />
+
                 {dataRows.map((dataRow, rowIndex) => (
-                    // TODO: fix key assignment
-                    // eslint-disable-next-line react/no-array-index-key
-                    <StyledTableRow rowIndex={rowIndex + 1} key={rowIndex}>
-                        {dataRow.map((value, cellIndex) => (
-                            <TableCell
-                                // TODO: fix key assignment
-                                // eslint-disable-next-line react/no-array-index-key
-                                key={cellIndex}
-                                columnType={columnConfigs[cellIndex]}
-                                content={value}
-                            />
-                        ))}
-                    </StyledTableRow>
+                    <TableRow
+                        rowIndex={rowIndex + 1}
+                        dataRow={dataRow}
+                        columnConfigs={columnConfigs}
+                        // TODO: fix key assignment
+                        // eslint-disable-next-line react/no-array-index-key
+                        key={rowIndex}
+                    />
                 ))}
             </Table>
         </div>
