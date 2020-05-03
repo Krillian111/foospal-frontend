@@ -26,28 +26,6 @@ const Table = styled.div`
     margin: 20px 20px;
 `;
 
-<<<<<<< HEAD
-=======
-const TableHeaderRow = styled.div`
-    display: table-row;
-    font-size: 1.05em;
-    background-color: #35524a;
-    border-radius: 12px;
-    font-weight: normal;
-    color: #a2e8dd;
-    line-height: 2;
-    white-space: nowrap;
-`;
-
-const StyledTableRow = styled.div`
-    display: table-row;
-    background-color: ${(props) =>
-        props.rowIndex % 2 === 1 ? '#627ca588' : '#779cab'};
-    border: 2px solid 35524a;
-    border-radius: 3px;
-`;
-
->>>>>>> Farbschema auf alles übernommen
 function SimpleTable({ title, columnConfigs, tableHeaders, dataRows }) {
     if (dataRows.length !== 0) {
         const hasNotEqualConfigsAndHeaders =
