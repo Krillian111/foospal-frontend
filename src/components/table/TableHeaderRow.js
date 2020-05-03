@@ -6,11 +6,11 @@ import cellDataType from './cellDataType';
 
 const StyledTableHeaderRow = styled.div`
     display: table-row;
-    font-size: 1.2em;
-    background-color: #be8595;
-    border-radius: 20px;
-    font-weight: bold;
-    color: rgba(0, 128, 0, 1);
+    font-size: 1.05em;
+    background-color: #35524a;
+    border-radius: 12px;
+    font-weight: normal;
+    color: #a2e8dd;
     line-height: 2;
     white-space: nowrap;
 `;
