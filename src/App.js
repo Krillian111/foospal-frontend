@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import GameList from './containers/GameList';
+
 import CsvUpload from './containers/CsvUpload';
 import FetchSinglesButton from './containers/FetchSinglesButton';
+import Login from './containers/login/LoginButton';
+import LoginModal from './containers/login/LoginModal';
 import PlayerStats from './containers/PlayerStats';
+import GameList from './containers/GameList';
 
 const Root = styled.div`
     font-family: 'Roboto';
@@ -12,13 +15,13 @@ const Root = styled.div`
 
 function App() {
     return (
-        <Root className="App">
-            <header className="App-header">
-                <CsvUpload />
-                <FetchSinglesButton />
-                <PlayerStats />
-                <GameList />
-            </header>
+        <Root>
+            <CsvUpload />
+            <FetchSinglesButton />
+            <Login />
+            <LoginModal />
+            <PlayerStats />
+            <GameList />
         </Root>
     );
 }
