@@ -7,8 +7,8 @@ import cellDataType from './cellDataType';
 const StyledTableRow = styled.div`
     display: table-row;
     background-color: ${(props) =>
-        props.rowIndex % 2 === 1 ? '#adbe85' : '#5f8059'};
-    border: 2px solid lightgrey;
+        props.rowIndex % 2 === 1 ? '#627ca588' : '#779cab'};
+    border: 2px solid 35524a;
     border-radius: 3px;
 `;
 
