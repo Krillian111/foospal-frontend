@@ -7,7 +7,7 @@ const mapStateToProps = () => ({
 });
 
 const mapDispatchToProps = {
-    onClickHandler: fetchSingles,
+    onClick: fetchSingles,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrimaryButton);

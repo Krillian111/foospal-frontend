@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import PrimaryButton from '../button/PrimaryButton';
 
 export const formFieldType = {
     text: 'text',
+    password: 'password',
 };
 
 const StyledModalBackground = styled.div`
@@ -27,23 +29,59 @@ const StyledModalContent = styled.div`
     width: 80%; /* Could be more or less, depending on screen size */
 `;
 
+const StyledError = styled.div`
+    color: red;
+`;
+
 export default function FormModal({
     isModalVisible,
     formFields,
+    updateFieldInStore,
+    error,
+    cancelButton,
     submitButton,
 }) {
+    const keyValuePairs = {};
+    Object.keys(formFields).forEach((key) => {
+        keyValuePairs[key] = formFields[key].value;
+    });
+    const fields = Object.keys(formFields).map((key) => {
+        const { type, label, value } = formFields[key];
+        const onChange = updateFieldInStore[key];
+        return {
+            type,
+            name: key,
+            label,
+            value,
+            onChange,
+        };
+    });
+
     return (
         <StyledModalBackground isModalVisible={isModalVisible}>
             <StyledModalContent>
-                {formFields.map(({ type, label }) => (
+                {fields.map(({ type, label, name, value, onChange }) => (
                     <div key={label}>
                         <label htmlFor={label}>{label}</label>
-                        <input name={label} type={type} />
+                        <input
+                            name={name}
+                            type={type}
+                            onChange={(event) => onChange(event.target.value)}
+                            value={value}
+                        />
                     </div>
                 ))}
-                <button onClick={submitButton.onClickHandler} type="button">
-                    {submitButton.label}
-                </button>
+                {error.isVisible && <StyledError>{error.message}</StyledError>}
+                <div>
+                    <PrimaryButton
+                        onClick={cancelButton.onClick}
+                        label={cancelButton.label}
+                    />
+                    <PrimaryButton
+                        onClick={() => submitButton.onClick(keyValuePairs)}
+                        label={submitButton.label}
+                    />
+                </div>
             </StyledModalContent>
         </StyledModalBackground>
     );
@@ -51,14 +89,24 @@ export default function FormModal({
 
 FormModal.propTypes = {
     isModalVisible: PropTypes.bool.isRequired,
-    formFields: PropTypes.arrayOf(
+    formFields: PropTypes.objectOf(
         PropTypes.shape({
             type: PropTypes.oneOf(Object.values(formFieldType)),
             label: PropTypes.string,
+            value: PropTypes.string,
         })
     ).isRequired,
+    updateFieldInStore: PropTypes.objectOf(PropTypes.func).isRequired,
+    error: PropTypes.shape({
+        isVisible: PropTypes.bool,
+        message: PropTypes.string,
+    }).isRequired,
     submitButton: PropTypes.shape({
         label: PropTypes.string,
-        onClickHandler: PropTypes.func,
+        onClick: PropTypes.func,
+    }).isRequired,
+    cancelButton: PropTypes.shape({
+        label: PropTypes.string,
+        onClick: PropTypes.func,
     }).isRequired,
 };

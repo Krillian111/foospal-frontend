@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import CsvUpload from './containers/CsvUpload';
 import FetchSinglesButton from './containers/FetchSinglesButton';
 import Login from './containers/login/LoginButton';
-import LoginDialog from './containers/login/LoginDialog';
+import LoginModal from './containers/login/LoginModal';
 import PlayerStats from './containers/PlayerStats';
 import GameList from './containers/GameList';
 
@@ -19,7 +19,7 @@ function App() {
             <CsvUpload />
             <FetchSinglesButton />
             <Login />
-            <LoginDialog />
+            <LoginModal />
             <PlayerStats />
             <GameList />
         </Root>

@@ -1,6 +1,6 @@
-export const SHOW_LOGIN_DIALOG = 'SHOW_LOGIN_DIALOG';
+export const SET_LOGIN_MODAL_VISIBILITY = 'SET_LOGIN_MODAL_VISIBILITY';
 
 export const setLoginModalVisibility = (isVisible) => ({
-    type: SHOW_LOGIN_DIALOG,
+    type: SET_LOGIN_MODAL_VISIBILITY,
     isVisible,
 });

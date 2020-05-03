@@ -7,7 +7,7 @@ const mapStateToProps = () => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onClickHandler: () => dispatch(setLoginModalVisibility(true)),
+    onClick: () => dispatch(setLoginModalVisibility(true)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrimaryButton);
