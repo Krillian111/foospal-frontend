@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import UploadButton from '../components/UploadButton';
+import UploadButton from '../components/1molecule/button/UploadButton';
 import { parseSinglesCsv } from '../store/actions/parseCsv';
 
 function dispatchSinglesCsvForParsing(dispatch, domId) {

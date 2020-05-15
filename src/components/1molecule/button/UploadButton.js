@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import PrimaryButton from './button/PrimaryButton';
+import PrimaryButton from '../../0atom/button/PrimaryButton';
 
 const StyledButtonWrapper = styled.div`
     position: relative;

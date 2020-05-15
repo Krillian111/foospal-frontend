@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import TableCell from './TableCell';
-import cellDataType from './cellDataType';
+import TableCell from '../../0atom/table/TableCell';
+import cellDataType from '../../0atom/table/cellDataType';
 
 const StyledTableHeaderRow = styled.div`
     display: table-row;
