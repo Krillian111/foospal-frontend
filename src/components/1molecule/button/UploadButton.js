@@ -22,7 +22,7 @@ function UploadButton({ onChangeIdConsumer }) {
     const csvInputId = 'csv-input-id';
     return (
         <StyledButtonWrapper>
-            <PrimaryButton label="Upload csv-File" onClickHandler={() => {}} />
+            <PrimaryButton label="Upload csv-File" onClick={() => {}} />
             <input
                 type="file"
                 id={csvInputId}

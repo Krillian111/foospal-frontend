@@ -1,5 +1,5 @@
-import { simpleCompareDescending } from '../util/sortUtil';
-import { mapToPointsAvg } from '../data/playerStats';
+import { simpleCompareDescending } from '../../../util/sortUtil';
+import { mapToPointsAvg } from '../../../data/playerStats';
 
 export const ACTION_SORT_STATS_BY_POINTS = 'ACTION_SORT_STATS_BY_POINTS';
 

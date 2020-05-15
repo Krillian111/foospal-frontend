@@ -1,5 +1,5 @@
-import { simpleCompareDescending } from '../util/sortUtil';
-import { mapToTotalGames } from '../data/playerStats';
+import { simpleCompareDescending } from '../../../util/sortUtil';
+import { mapToTotalGames } from '../../../data/playerStats';
 
 export const ACTION_SORT_STATS_BY_TOTAL_GAMES =
     'ACTION_SORT_STATS_BY_TOTAL_GAMES';
