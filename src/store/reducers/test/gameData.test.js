@@ -1,6 +1,6 @@
 import fs from 'fs';
 import gameData from '../gameData';
-import { ACTION_PARSE_CSV } from '../../actions/parseCsv';
+import { ACTION_PARSE_CSV } from '../../actions/stats/csv/parseCsv';
 import { PlayerStats } from '../../data/playerStats';
 import { SingleGame } from '../../data/singleGame';
 
