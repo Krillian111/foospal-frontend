@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
-import FormModal, { formFieldType } from '../../components/modal/FormModal';
 import { setLoginModalVisibility } from '../../store/actions/login/setLoginModalVisibility';
 import { loginToBackend } from '../../store/actions/login/loginToBackend';
 import { setUsername } from '../../store/actions/login/setUsername';
 import { setPassword } from '../../store/actions/login/setPassword';
+import FormModal, {
+    formFieldType,
+} from '../../components/1molecule/modal/FormModal';
 
 const mapStateToProps = (state) => ({
     formFields: {

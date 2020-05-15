@@ -28,6 +28,8 @@ yarn-error.log*
 # ide
 .history
 .idea
+.vscode
 
 # MongoDB data folder
 mongodb-data
+

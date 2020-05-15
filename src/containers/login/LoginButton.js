@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { setLoginModalVisibility } from '../../store/actions/login/setLoginModalVisibility';
-import PrimaryButton from '../../components/button/PrimaryButton';
+import PrimaryButton from '../../components/0atom/button/PrimaryButton';
 
 const mapStateToProps = () => ({
     label: 'Login',

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import cellDataType from './cellDataType';
-import TableRow from './TableRow';
-import TableHeaderRow from './TableHeaderRow';
+import TableHeaderRow from '../../1molecule/table/TableHeaderRow';
+import TableRow from '../../1molecule/table/TableRow';
+import cellDataType from '../../0atom/table/cellDataType';
 
 const Header = styled.h2`
     font-size: 1.5em;
