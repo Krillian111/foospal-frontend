@@ -2,6 +2,7 @@ import { SET_LOGIN_MODAL_VISIBILITY } from '../actions/login/setLoginModalVisibi
 import { LOGIN_TO_BACKEND } from '../actions/login/loginToBackend';
 import { SET_USERNAME } from '../actions/login/setUsername';
 import { SET_PASSWORD } from '../actions/login/setPassword';
+import { LOGOUT_FROM_BACKEND } from '../actions/login/logoutFromBackend';
 
 const initialState = {
     isLoginDialogVisible: false,
@@ -43,6 +44,14 @@ const authorization = (state = initialState, action) => {
             return {
                 ...state,
                 isLoginErrorVisible: true,
+            };
+        }
+        case `${LOGOUT_FROM_BACKEND}_FAIL`:
+        case `${LOGOUT_FROM_BACKEND}_SUCCESS`: {
+            return {
+                ...state,
+                refreshToken: undefined,
+                accessToken: undefined,
             };
         }
         default:
