@@ -22,7 +22,7 @@ function TableRow({ rowIndex, dataRow, columnConfigs }) {
                     // TODO: fix key assignment
                     // eslint-disable-next-line react/no-array-index-key
                     key={cellIndex}
-                    columnType={columnConfigs[cellIndex]}
+                    columnType={columnConfigs[cellIndex].type}
                     content={value}
                 />
             ))}
@@ -36,7 +36,9 @@ TableRow.propTypes = {
         PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     ).isRequired,
     columnConfigs: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.values(cellDataType))
+        PropTypes.shape({
+            type: PropTypes.oneOf(Object.values(cellDataType)),
+        })
     ).isRequired,
 };
 

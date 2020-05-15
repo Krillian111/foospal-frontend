@@ -15,15 +15,15 @@ const StyledTableHeaderRow = styled.div`
     white-space: nowrap;
 `;
 
-function TableHeaderRow({ tableHeaders, columnConfigs }) {
+function TableHeaderRow({ columnConfigs }) {
     return (
         <StyledTableHeaderRow>
-            {tableHeaders.map(({ text, onClick }, index) => (
+            {columnConfigs.map(({ type, headerLabel, onHeaderClick }) => (
                 <TableCell
-                    key={text}
-                    columnType={columnConfigs[index]}
-                    content={text}
-                    onClick={onClick}
+                    key={headerLabel}
+                    columnType={type}
+                    content={headerLabel}
+                    onClick={onHeaderClick}
                 />
             ))}
         </StyledTableHeaderRow>
@@ -31,14 +31,12 @@ function TableHeaderRow({ tableHeaders, columnConfigs }) {
 }
 
 TableHeaderRow.propTypes = {
-    tableHeaders: PropTypes.arrayOf(
-        PropTypes.shape({
-            text: PropTypes.string.isRequired,
-            onClick: PropTypes.func,
-        })
-    ).isRequired,
     columnConfigs: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.values(cellDataType))
+        PropTypes.shape({
+            type: PropTypes.oneOf(Object.values(cellDataType)),
+            headerLabel: PropTypes.string.isRequired,
+            onHeaderClick: PropTypes.func,
+        })
     ).isRequired,
 };
 
