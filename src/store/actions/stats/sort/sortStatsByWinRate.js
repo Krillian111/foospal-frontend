@@ -1,5 +1,5 @@
-import { simpleCompareDescending } from '../util/sortUtil';
-import { mapToWinRate } from '../data/playerStats';
+import { simpleCompareDescending } from '../../../util/sortUtil';
+import { mapToWinRate } from '../../../data/playerStats';
 
 export const ACTION_SORT_STATS_BY_WIN_RATE = 'ACTION_SORT_STATS_BY_WIN_RATE';
 

@@ -1,18 +1,18 @@
-import { ACTION_PARSE_CSV } from '../actions/parseCsv';
-import { ACTION_SORT_STATS_BY_PLAYER } from '../actions/sortStatsByPlayer';
-import { ACTION_SORT_STATS_BY_GOAL_DIFFERENCE } from '../actions/sortStatsByGoalDifference';
-import { ACTION_SORT_STATS_BY_WIN_RATE } from '../actions/sortStatsByWinRate';
-import { ACTION_SORT_STATS_BY_CLOSE_RATE } from '../actions/sortStatsByCloseRate';
-import { ACTION_SORT_STATS_BY_POINTS } from '../actions/sortStatsByPoints';
-import { ACTION_SORT_STATS_BY_POINTS_CLOSE } from '../actions/sortStatsByPointsClose';
+import { ACTION_PARSE_CSV } from '../actions/stats/csv/parseCsv';
+import { ACTION_SORT_STATS_BY_PLAYER } from '../actions/stats/sort/sortStatsByPlayer';
+import { ACTION_SORT_STATS_BY_GOAL_DIFFERENCE } from '../actions/stats/sort/sortStatsByGoalDifference';
+import { ACTION_SORT_STATS_BY_WIN_RATE } from '../actions/stats/sort/sortStatsByWinRate';
+import { ACTION_SORT_STATS_BY_CLOSE_RATE } from '../actions/stats/sort/sortStatsByCloseRate';
+import { ACTION_SORT_STATS_BY_POINTS } from '../actions/stats/sort/sortStatsByPoints';
+import { ACTION_SORT_STATS_BY_POINTS_CLOSE } from '../actions/stats/sort/sortStatsByPointsClose';
 import { PlayerStats, updatePlayerFromSingleGame } from '../data/playerStats';
 import {
     SingleGame,
     fromPerspectiveOfA,
     fromPerspectiveOfB,
 } from '../data/singleGame';
-import { ACTION_SORT_STATS_BY_TOTAL_GAMES } from '../actions/sortStatsByTotalGames';
-import { FETCH_SINGLES_FROM_BACKEND } from '../actions/backend/fetchSingles';
+import { ACTION_SORT_STATS_BY_TOTAL_GAMES } from '../actions/stats/sort/sortStatsByTotalGames';
+import { FETCH_SINGLES_FROM_BACKEND } from '../actions/stats/singles/fetchSingles';
 
 const initialState = {
     games: [],
