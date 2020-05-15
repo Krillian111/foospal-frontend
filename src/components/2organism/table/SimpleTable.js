@@ -26,16 +26,14 @@ const Table = styled.div`
     margin: 20px 20px;
 `;
 
-function SimpleTable({ title, columnConfigs, tableHeaders, dataRows }) {
+function SimpleTable({ title, columnConfigs, dataRows }) {
     if (dataRows.length !== 0) {
-        const hasNotEqualConfigsAndHeaders =
-            columnConfigs.length !== tableHeaders.length;
         const hasNotEqualConfigAndRows =
             columnConfigs.length !== dataRows[0].length;
-        if (hasNotEqualConfigsAndHeaders || hasNotEqualConfigAndRows) {
+        if (hasNotEqualConfigAndRows) {
             // does not catch all errors but its good enough for simple ones
             throw new Error(
-                `Error, received ${columnConfigs.length} column configs, ${tableHeaders.length} headers and ${dataRows[0].length} rows`
+                `Error, received ${columnConfigs.length} column configs and ${dataRows[0].length} rows`
             );
         }
     }
@@ -44,10 +42,7 @@ function SimpleTable({ title, columnConfigs, tableHeaders, dataRows }) {
         <div>
             <Header>{title}</Header>
             <Table>
-                <TableHeaderRow
-                    tableHeaders={tableHeaders}
-                    columnConfigs={columnConfigs}
-                />
+                <TableHeaderRow columnConfigs={columnConfigs} />
 
                 {dataRows.map((dataRow, rowIndex) => (
                     <TableRow
@@ -67,12 +62,10 @@ function SimpleTable({ title, columnConfigs, tableHeaders, dataRows }) {
 SimpleTable.propTypes = {
     title: PropTypes.string.isRequired,
     columnConfigs: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.values(cellDataType))
-    ).isRequired,
-    tableHeaders: PropTypes.arrayOf(
         PropTypes.shape({
-            text: PropTypes.string.isRequired,
-            onClick: PropTypes.func,
+            type: PropTypes.oneOf(Object.values(cellDataType)),
+            headerLabel: PropTypes.string.isRequired,
+            onHeaderClick: PropTypes.func,
         })
     ).isRequired,
     dataRows: PropTypes.arrayOf(

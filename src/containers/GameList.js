@@ -3,18 +3,11 @@ import SimpleTable from '../components/2organism/table/SimpleTable';
 import cellDataType from '../components/0atom/table/cellDataType';
 
 const columnConfigs = [
-    cellDataType.numberShort,
-    cellDataType.stringLong,
-    cellDataType.stringLong,
-    cellDataType.numberShort,
-    cellDataType.numberShort,
-];
-const tableHeaders = [
-    { text: 'Game' },
-    { text: 'PlayerA' },
-    { text: 'PlayerB' },
-    { text: 'ScoreA' },
-    { text: 'ScoreB' },
+    { type: cellDataType.numberShort, headerLabel: 'Game' },
+    { type: cellDataType.stringLong, headerLabel: 'PlayerA' },
+    { type: cellDataType.stringLong, headerLabel: 'PlayerB' },
+    { type: cellDataType.numberShort, headerLabel: 'ScoreA' },
+    { type: cellDataType.numberShort, headerLabel: 'ScoreB' },
 ];
 
 const mapStateToProps = (state) => {
@@ -29,7 +22,6 @@ const mapStateToProps = (state) => {
         dataRows,
         title: 'Games',
         columnConfigs,
-        tableHeaders,
     };
 };
 

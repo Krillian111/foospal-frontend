@@ -21,17 +21,6 @@ import {
 } from '../components/utils/formatter';
 import SimpleTable from '../components/2organism/table/SimpleTable';
 
-const columnConfigs = [
-    cellDataType.numberShort,
-    cellDataType.stringLong,
-    cellDataType.numberShort,
-    cellDataType.numberShort,
-    cellDataType.numberShort,
-    cellDataType.numberShort,
-    cellDataType.numberShort,
-    cellDataType.numberShort,
-];
-
 function mapStateToProps(state) {
     const dataRows = state.gameData.playerStats.map((stats) => {
         return [
@@ -47,33 +36,55 @@ function mapStateToProps(state) {
     });
     return {
         title: 'Stats',
-        columnConfigs,
         dataRows,
     };
 }
 
 function mapDispatchToProps(dispatch) {
-    const tableHeaders = [
-        { text: 'Id' },
-        { text: 'Player   ', onClick: () => dispatch(sortStatsByPlayer()) },
-        { text: 'Games', onClick: () => dispatch(sortStatsByTotalGames()) },
-        { text: 'Win rate', onClick: () => dispatch(sortStatsByWinRate()) },
+    const columnConfigs = [
         {
-            text: 'Goal diff',
-            onClick: () => dispatch(sortStatsByGoalDifference()),
-        },
-        { text: 'Pts (avg)', onClick: () => dispatch(sortStatsByPoints()) },
-        {
-            text: 'Pts (avg, close)',
-            onClick: () => dispatch(sortStatsByPointsClose()),
+            type: cellDataType.numberShort,
+            headerLabel: 'Id',
+            onHeaderClick: () => {},
         },
         {
-            text: 'Games (close)',
-            onClick: () => dispatch(sortStatsByCloseRate()),
+            type: cellDataType.stringLong,
+            headerLabel: 'Player   ',
+            onHeaderClick: () => dispatch(sortStatsByPlayer()),
+        },
+        {
+            type: cellDataType.numberShort,
+            headerLabel: 'Games',
+            onHeaderClick: () => dispatch(sortStatsByTotalGames()),
+        },
+        {
+            type: cellDataType.numberShort,
+            headerLabel: 'Win rate',
+            onHeaderClick: () => dispatch(sortStatsByWinRate()),
+        },
+        {
+            type: cellDataType.numberShort,
+            headerLabel: 'Goal diff',
+            onHeaderClick: () => dispatch(sortStatsByGoalDifference()),
+        },
+        {
+            type: cellDataType.numberShort,
+            headerLabel: 'Pts (avg)',
+            onHeaderClick: () => dispatch(sortStatsByPoints()),
+        },
+        {
+            type: cellDataType.numberShort,
+            headerLabel: 'Pts (avg, close)',
+            onHeaderClick: () => dispatch(sortStatsByPointsClose()),
+        },
+        {
+            type: cellDataType.numberShort,
+            headerLabel: 'Games (close)',
+            onHeaderClick: () => dispatch(sortStatsByCloseRate),
         },
     ];
     return {
-        tableHeaders,
+        columnConfigs,
     };
 }
 
