@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
-import App from './App';
+import App from './components/4page/App';
 import rootReducer from './store/reducers/rootReducer';
 
 // eslint-disable-next-line no-restricted-globals
