@@ -8,84 +8,84 @@ import { sortStatsByCloseRate } from '../store/actions/stats/sort/sortStatsByClo
 import { sortStatsByTotalGames } from '../store/actions/stats/sort/sortStatsByTotalGames';
 import cellDataType from '../components/0atom/table/cellDataType';
 import {
-    mapToWinRate,
-    mapToGoalDifference,
-    mapToPointsAvg,
-    mapToPointsCloseAvg,
-    mapToCloseGameRate,
-    mapToTotalGames,
+  mapToWinRate,
+  mapToGoalDifference,
+  mapToPointsAvg,
+  mapToPointsCloseAvg,
+  mapToCloseGameRate,
+  mapToTotalGames,
 } from '../store/data/playerStats';
 import {
-    cutOffAfterTwoDecimal,
-    convertToPercentage,
+  cutOffAfterTwoDecimal,
+  convertToPercentage,
 } from '../components/utils/formatter';
 import SimpleTable from '../components/2organism/table/SimpleTable';
 
 function mapStateToProps(state) {
-    const dataRows = state.gameData.playerStats.map((stats) => {
-        return [
-            stats.id,
-            stats.name,
-            mapToTotalGames(stats),
-            convertToPercentage(mapToWinRate(stats)),
-            mapToGoalDifference(stats),
-            cutOffAfterTwoDecimal(mapToPointsAvg(stats)),
-            cutOffAfterTwoDecimal(mapToPointsCloseAvg(stats)),
-            convertToPercentage(mapToCloseGameRate(stats)),
-        ];
-    });
-    return {
-        title: 'Stats',
-        dataRows,
-    };
+  const dataRows = state.gameData.playerStats.map((stats) => {
+    return [
+      stats.id,
+      stats.name,
+      mapToTotalGames(stats),
+      convertToPercentage(mapToWinRate(stats)),
+      mapToGoalDifference(stats),
+      cutOffAfterTwoDecimal(mapToPointsAvg(stats)),
+      cutOffAfterTwoDecimal(mapToPointsCloseAvg(stats)),
+      convertToPercentage(mapToCloseGameRate(stats)),
+    ];
+  });
+  return {
+    title: 'Stats',
+    dataRows,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    const columnConfigs = [
-        {
-            type: cellDataType.numberShort,
-            headerLabel: 'Id',
-            onHeaderClick: () => {},
-        },
-        {
-            type: cellDataType.stringLong,
-            headerLabel: 'Player   ',
-            onHeaderClick: () => dispatch(sortStatsByPlayer()),
-        },
-        {
-            type: cellDataType.numberShort,
-            headerLabel: 'Games',
-            onHeaderClick: () => dispatch(sortStatsByTotalGames()),
-        },
-        {
-            type: cellDataType.numberShort,
-            headerLabel: 'Win rate',
-            onHeaderClick: () => dispatch(sortStatsByWinRate()),
-        },
-        {
-            type: cellDataType.numberShort,
-            headerLabel: 'Goal diff',
-            onHeaderClick: () => dispatch(sortStatsByGoalDifference()),
-        },
-        {
-            type: cellDataType.numberShort,
-            headerLabel: 'Pts (avg)',
-            onHeaderClick: () => dispatch(sortStatsByPoints()),
-        },
-        {
-            type: cellDataType.numberShort,
-            headerLabel: 'Pts (avg, close)',
-            onHeaderClick: () => dispatch(sortStatsByPointsClose()),
-        },
-        {
-            type: cellDataType.numberShort,
-            headerLabel: 'Games (close)',
-            onHeaderClick: () => dispatch(sortStatsByCloseRate),
-        },
-    ];
-    return {
-        columnConfigs,
-    };
+  const columnConfigs = [
+    {
+      type: cellDataType.numberShort,
+      headerLabel: 'Id',
+      onHeaderClick: () => {},
+    },
+    {
+      type: cellDataType.stringLong,
+      headerLabel: 'Player   ',
+      onHeaderClick: () => dispatch(sortStatsByPlayer()),
+    },
+    {
+      type: cellDataType.numberShort,
+      headerLabel: 'Games',
+      onHeaderClick: () => dispatch(sortStatsByTotalGames()),
+    },
+    {
+      type: cellDataType.numberShort,
+      headerLabel: 'Win rate',
+      onHeaderClick: () => dispatch(sortStatsByWinRate()),
+    },
+    {
+      type: cellDataType.numberShort,
+      headerLabel: 'Goal diff',
+      onHeaderClick: () => dispatch(sortStatsByGoalDifference()),
+    },
+    {
+      type: cellDataType.numberShort,
+      headerLabel: 'Pts (avg)',
+      onHeaderClick: () => dispatch(sortStatsByPoints()),
+    },
+    {
+      type: cellDataType.numberShort,
+      headerLabel: 'Pts (avg, close)',
+      onHeaderClick: () => dispatch(sortStatsByPointsClose()),
+    },
+    {
+      type: cellDataType.numberShort,
+      headerLabel: 'Games (close)',
+      onHeaderClick: () => dispatch(sortStatsByCloseRate),
+    },
+  ];
+  return {
+    columnConfigs,
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SimpleTable);

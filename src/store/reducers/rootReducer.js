@@ -3,6 +3,6 @@ import gameData from './gameData';
 import authorization from './authorization';
 
 export default combineReducers({
-    authorization,
-    gameData,
+  authorization,
+  gameData,
 });

@@ -11,8 +11,8 @@ import rootReducer from './store/reducers/rootReducer';
 const hostname = location.hostname || 'localhost'; // TODO: this needs to be injected somehow
 
 const client = axios.create({
-    baseURL: `http://${hostname}:4000`,
-    responseType: 'json',
+  baseURL: `http://${hostname}:4000`,
+  responseType: 'json',
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -22,8 +22,8 @@ const enhancer = composeEnhancers(applyMiddleware(axiosMiddleware(client)));
 const store = createStore(rootReducer, enhancer);
 
 render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );

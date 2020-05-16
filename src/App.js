@@ -9,21 +9,21 @@ import PlayerStats from './containers/PlayerStats';
 import GameList from './containers/GameList';
 
 const Root = styled.div`
-    font-family: 'Roboto';
-    background-color: #779cab;
+  font-family: 'Roboto';
+  background-color: #779cab;
 `;
 
 function App() {
-    return (
-        <Root>
-            <CsvUpload />
-            <FetchSinglesButton />
-            <Login />
-            <LoginModal />
-            <PlayerStats />
-            <GameList />
-        </Root>
-    );
+  return (
+    <Root>
+      <CsvUpload />
+      <FetchSinglesButton />
+      <Login />
+      <LoginModal />
+      <PlayerStats />
+      <GameList />
+    </Root>
+  );
 }
 
 export default App;
