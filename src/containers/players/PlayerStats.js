@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { sortStatsByPlayer } from '../store/actions/stats/sort/sortStatsByPlayer';
-import { sortStatsByWinRate } from '../store/actions/stats/sort/sortStatsByWinRate';
-import { sortStatsByGoalDifference } from '../store/actions/stats/sort/sortStatsByGoalDifference';
-import { sortStatsByPoints } from '../store/actions/stats/sort/sortStatsByPoints';
-import { sortStatsByPointsClose } from '../store/actions/stats/sort/sortStatsByPointsClose';
-import { sortStatsByCloseRate } from '../store/actions/stats/sort/sortStatsByCloseRate';
-import { sortStatsByTotalGames } from '../store/actions/stats/sort/sortStatsByTotalGames';
-import cellDataType from '../components/0atom/table/cellDataType';
+import { sortStatsByPlayer } from '../../store/actions/stats/sort/sortStatsByPlayer';
+import { sortStatsByWinRate } from '../../store/actions/stats/sort/sortStatsByWinRate';
+import { sortStatsByGoalDifference } from '../../store/actions/stats/sort/sortStatsByGoalDifference';
+import { sortStatsByPoints } from '../../store/actions/stats/sort/sortStatsByPoints';
+import { sortStatsByPointsClose } from '../../store/actions/stats/sort/sortStatsByPointsClose';
+import { sortStatsByCloseRate } from '../../store/actions/stats/sort/sortStatsByCloseRate';
+import { sortStatsByTotalGames } from '../../store/actions/stats/sort/sortStatsByTotalGames';
+import cellDataType from '../../components/0atom/table/cellDataType';
 import {
   mapToWinRate,
   mapToGoalDifference,
@@ -14,12 +14,12 @@ import {
   mapToPointsCloseAvg,
   mapToCloseGameRate,
   mapToTotalGames,
-} from '../store/data/playerStats';
+} from '../../store/data/playerStats';
 import {
   cutOffAfterTwoDecimal,
   convertToPercentage,
-} from '../components/utils/formatter';
-import SimpleTable from '../components/2organism/table/SimpleTable';
+} from '../../components/utils/formatter';
+import SimpleTable from '../../components/2organism/table/SimpleTable';
 
 function mapStateToProps(state) {
   const dataRows = state.gameData.playerStats.map((stats) => {

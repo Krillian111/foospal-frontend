@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import SimpleTable from '../components/2organism/table/SimpleTable';
-import cellDataType from '../components/0atom/table/cellDataType';
+import SimpleTable from '../../components/2organism/table/SimpleTable';
+import cellDataType from '../../components/0atom/table/cellDataType';
 
 const columnConfigs = [
   { type: cellDataType.numberShort, headerLabel: 'Game' },
