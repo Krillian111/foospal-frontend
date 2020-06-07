@@ -11,7 +11,7 @@ const columnConfigs = [
 ];
 
 const mapStateToProps = (state) => {
-  const dataRows = state.gameData.games.map((game) => [
+  const dataRows = state.games.games.map((game) => [
     game.id,
     game.playerA,
     game.playerB,

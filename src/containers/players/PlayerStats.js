@@ -22,7 +22,7 @@ import {
 import SimpleTable from '../../components/2organism/table/SimpleTable';
 
 function mapStateToProps(state) {
-  const dataRows = state.gameData.playerStats.map((stats) => {
+  const dataRows = state.stats.singles.map((stats) => {
     return [
       stats.id,
       stats.name,

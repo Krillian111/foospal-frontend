@@ -1,23 +1,18 @@
 import fs from 'fs';
-import gameData from '../gameData';
-import { ACTION_PARSE_CSV } from '../../actions/stats/csv/parseCsv';
+import stats from '../stats';
+import { extractGamesFromCsv } from '../../actions/stats/csv/extractGamesFromCsv';
 import { PlayerStats } from '../../data/playerStats';
-import { SingleGame } from '../../data/singleGame';
+import { updateGames } from '../../actions/games/updateGames';
 
-describe('gameData', () => {
+describe('stats', () => {
   const testCsvFile = fs
     .readFileSync(`${process.cwd()}/src/store/reducers/test/testData.csv`)
     .toString();
 
-  test('file is mapped to playerStats', () => {
-    const actualState = gameData(
-      {},
-      {
-        type: ACTION_PARSE_CSV,
-        csvAsText: testCsvFile,
-      }
-    );
-    expect(actualState.playerStats).toStrictEqual([
+  test('csv is mapped to singleStats', () => {
+    const action = updateGames(extractGamesFromCsv(testCsvFile).games);
+    const actualState = stats({}, action);
+    expect(actualState.singles).toStrictEqual([
       new PlayerStats({
         id: 0,
         name: 'Alpha',
@@ -61,29 +56,6 @@ describe('gameData', () => {
         points: 3,
         pointsWithCloseScores: 3,
         closeGames: 0,
-      }),
-    ]);
-    expect(actualState.games).toStrictEqual([
-      new SingleGame({
-        id: 0,
-        playerA: 'Alpha',
-        playerB: 'Beta',
-        scoreA: 5,
-        scoreB: 4,
-      }),
-      new SingleGame({
-        id: 1,
-        playerA: 'Delta',
-        playerB: 'Gamma',
-        scoreA: 2,
-        scoreB: 5,
-      }),
-      new SingleGame({
-        id: 2,
-        playerA: 'Gamma',
-        playerB: 'Alpha',
-        scoreA: 2,
-        scoreB: 5,
       }),
     ]);
   });
