@@ -24,14 +24,15 @@ const StyledModalContent = styled.div`
   width: 80%; /* Could be more or less, depending on screen size */
 `;
 
-const StyledError = styled.div`
-  color: red;
+const StyledResult = styled.div`
+  font-weight: bold;
+  color: orange;
 `;
 
 export default function FormModal({
   isModalVisible,
   formFields,
-  error,
+  result,
   cancelButton,
   submitButton,
 }) {
@@ -43,7 +44,7 @@ export default function FormModal({
           cancel={cancelButton}
           submit={submitButton}
         />
-        {error.isVisible && <StyledError>{error.message}</StyledError>}
+        {result && <StyledResult>{result}</StyledResult>}
       </StyledModalContent>
     </StyledModalBackground>
   );
@@ -52,10 +53,7 @@ export default function FormModal({
 FormModal.propTypes = {
   isModalVisible: PropTypes.bool.isRequired,
   formFields: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  error: PropTypes.shape({
-    isVisible: PropTypes.bool,
-    message: PropTypes.string,
-  }).isRequired,
+  result: PropTypes.string,
   submitButton: PropTypes.shape({
     label: PropTypes.string,
     onClick: PropTypes.func,
@@ -64,4 +62,8 @@ FormModal.propTypes = {
     label: PropTypes.string,
     onClick: PropTypes.func,
   }).isRequired,
+};
+
+FormModal.defaultProps = {
+  result: undefined,
 };

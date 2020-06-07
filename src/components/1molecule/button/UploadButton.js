@@ -6,7 +6,7 @@ import PrimaryButton from '../../0atom/button/PrimaryButton';
 const StyledButtonWrapper = styled.div`
   position: relative;
   overflow: hidden;
-  display: inline;
+  display: inline-block;
 
   input[type='file'] {
     font-size: 100px;

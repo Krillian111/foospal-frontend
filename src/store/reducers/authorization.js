@@ -4,7 +4,7 @@ import { LOGOUT_FROM_BACKEND } from '../actions/login/logoutFromBackend';
 
 const initialState = {
   isLoginDialogVisible: false,
-  isLoginErrorVisible: false,
+  error: undefined,
   username: '',
   password: '',
 };
@@ -15,7 +15,7 @@ const authorization = (state = initialState, action) => {
       return {
         ...state,
         isLoginDialogVisible: action.isVisible,
-        isLoginErrorVisible: false,
+        error: undefined,
       };
     }
     case `${LOGIN_TO_BACKEND}_SUCCESS`: {
@@ -23,13 +23,13 @@ const authorization = (state = initialState, action) => {
         ...state,
         ...action.payload.data,
         isLoginDialogVisible: false,
-        isLoginErrorVisible: false,
+        error: undefined,
       };
     }
     case `${LOGIN_TO_BACKEND}_FAIL`: {
       return {
         ...state,
-        isLoginErrorVisible: true,
+        error: 'Login failed, please try again!',
       };
     }
     case `${LOGOUT_FROM_BACKEND}_FAIL`:
